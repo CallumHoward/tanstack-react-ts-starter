@@ -1,4 +1,3 @@
-// @ts-expect-error
 import { tanstackConfig } from "@tanstack/eslint-config";
 import prettier from "eslint-config-prettier";
 import reactHooks from "eslint-plugin-react-hooks";
@@ -6,12 +5,12 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import reactX from "eslint-plugin-react-x";
 import reactDom from "eslint-plugin-react-dom";
 import jsxA11y from "eslint-plugin-jsx-a11y";
-import vitest from "eslint-plugin-vitest";
+import vitest from "@vitest/eslint-plugin";
 import unicorn from "eslint-plugin-unicorn";
 import { defineConfig, globalIgnores } from "eslint/config";
 
 export default defineConfig([
-  globalIgnores(["dist", "src/routeTree.gen.ts"]),
+  globalIgnores([".output", "dist", "src/routeTree.gen.ts"]),
   ...tanstackConfig,
   {
     files: ["**/*.{ts,tsx}"],
@@ -31,6 +30,14 @@ export default defineConfig([
       "unicorn/filename-case": "off",
       "unicorn/prevent-abbreviations": "off",
       "unicorn/no-null": "off",
+    },
+  },
+  {
+    // TanStack Router route files co-locate the route component with the
+    // `Route` export, which is incompatible with this fast-refresh rule.
+    files: ["src/routes/**/*.{ts,tsx}"],
+    rules: {
+      "react-refresh/only-export-components": "off",
     },
   },
   {
