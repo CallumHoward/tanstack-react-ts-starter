@@ -47,6 +47,7 @@ jobs:
         run: pnpm build
 
       - name: Cache Playwright browsers
+        id: playwright-cache
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
@@ -54,8 +55,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-playwright-
 
-      - name: Install Playwright Chromium
+      # On a cache miss, install the browser + system deps. On a hit the browser
+      # is restored from cache, so only the (uncached) apt system deps are needed.
+      - name: Install Playwright browser and system deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: pnpm exec playwright install --with-deps chromium
+
+      - name: Install Playwright system deps
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: pnpm exec playwright install-deps chromium
 
       # CI runs against the production preview (pnpm serve), reusing the build
       # from the step above rather than rebuilding.
