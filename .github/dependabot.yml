@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: "npm" # covers pnpm; auto-detects pnpm-lock.yaml
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 7 # mirrors pnpm minimumReleaseAge (10080 min = 7 days)
+    open-pull-requests-limit: 10
+    groups:
+      tanstack:
+        patterns: ["@tanstack/*"]
+      eslint:
+        patterns: ["eslint*", "@vitest/eslint-plugin"]
+      types:
+        patterns: ["@types/*"]
+    ignore:
+      - dependency-name: "nitro" # intentionally tracks the v3 beta "latest"
