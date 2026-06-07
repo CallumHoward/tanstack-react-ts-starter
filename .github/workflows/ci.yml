@@ -11,12 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Reads the pnpm version from the "packageManager" field in package.json.
-      - uses: pnpm/action-setup@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+
+      # Reads the pnpm version from the "packageManager" field in package.json.
+      - uses: pnpm/action-setup@v4
 
       # Manual cache (instead of setup-node's built-in cache: pnpm) so we can
       # use restore-keys for warm/partial restores when the lockfile changes.
