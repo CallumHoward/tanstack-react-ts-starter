@@ -1,4 +1,4 @@
-import { defineConfig } from "vitest/config";
+import { configDefaults, defineConfig } from "vitest/config";
 import { devtools } from "@tanstack/devtools-vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact, { reactCompilerPreset } from "@vitejs/plugin-react";
@@ -36,6 +36,8 @@ export default defineConfig(({ mode }) => {
     ],
     test: {
       environment: "jsdom",
+      // Playwright e2e specs live in e2e/ and must not be picked up by Vitest.
+      exclude: [...configDefaults.exclude, "e2e/**"],
     },
   };
 });

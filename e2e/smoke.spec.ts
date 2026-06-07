@@ -13,12 +13,9 @@ test("home page renders and the console stays clean", async ({ page }) => {
 
   await page.goto("/");
 
-  // The route renders <main>Hello world</main>; this also confirms the page
-  // responded and the document mounted.
+  // Web-first assertion auto-waits for the element, giving the page time to
+  // render and hydrate; the route renders <main>Hello world</main>.
   await expect(page.locator("main")).toContainText("Hello world");
-
-  // Give hydration a moment to flush any deferred errors.
-  await page.waitForLoadState("networkidle");
 
   expect(pageErrors, "uncaught page exceptions").toEqual([]);
   expect(consoleErrors, "browser console errors").toEqual([]);

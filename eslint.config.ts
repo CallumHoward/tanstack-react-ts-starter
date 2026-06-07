@@ -6,6 +6,7 @@ import reactX from "eslint-plugin-react-x";
 import reactDom from "eslint-plugin-react-dom";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import vitest from "@vitest/eslint-plugin";
+import playwright from "eslint-plugin-playwright";
 import unicorn from "eslint-plugin-unicorn";
 import { defineConfig, globalIgnores } from "eslint/config";
 
@@ -41,7 +42,13 @@ export default defineConfig([
     },
   },
   {
+    // Vitest unit tests only — Playwright e2e specs live in e2e/.
     files: ["**/*.test.{ts,tsx}", "**/*.spec.{ts,tsx}"],
+    ignores: ["e2e/**"],
     extends: [vitest.configs.recommended],
+  },
+  {
+    files: ["e2e/**/*.{ts,tsx}"],
+    extends: [playwright.configs["flat/recommended"]],
   },
 ]);

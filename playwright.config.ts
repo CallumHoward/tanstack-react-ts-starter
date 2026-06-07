@@ -7,7 +7,6 @@ const isCI = Boolean(process.env.CI);
 // reuses the build produced earlier in the workflow (pnpm serve, no rebuild).
 export default defineConfig({
   testDir: "./e2e",
-  testMatch: "**/*.e2e.ts",
   fullyParallel: true,
   forbidOnly: isCI,
   retries: isCI ? 1 : 0,
