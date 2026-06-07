@@ -46,9 +46,17 @@ export default defineConfig([
     files: ["**/*.test.{ts,tsx}", "**/*.spec.{ts,tsx}"],
     ignores: ["e2e/**"],
     extends: [vitest.configs.recommended],
+    rules: {
+      // Policy: every test/spec file starts with a top-level describe block.
+      "vitest/require-top-level-describe": "error",
+    },
   },
   {
     files: ["e2e/**/*.{ts,tsx}"],
     extends: [playwright.configs["flat/recommended"]],
+    rules: {
+      // Policy: every test/spec file starts with a top-level describe block.
+      "playwright/require-top-level-describe": "error",
+    },
   },
 ]);
