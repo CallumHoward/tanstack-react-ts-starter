@@ -16,3 +16,7 @@ updates:
         patterns: ["@types/*"]
     ignore:
       - dependency-name: "nitro" # intentionally tracks the v3 beta "latest"
+      # Keep @types/node on the major matching the Node runtime (.nvmrc);
+      # bump it by hand when moving to the next Node LTS.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
