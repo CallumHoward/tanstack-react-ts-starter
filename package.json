@@ -16,18 +16,15 @@
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
     "check": "tsgo --noEmit",
+    "fallow": "fallow --fail-on-issues",
     "postinstall": "lefthook install"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.3.0",
     "@tanstack/react-devtools": "^0.10.5",
     "@tanstack/react-router": "^1.170.9",
     "@tanstack/react-router-devtools": "^1.167.0",
-    "@tanstack/react-router-ssr-query": "^1.167.1",
     "@tanstack/react-start": "^1.168.16",
-    "@tanstack/react-table": "^8.21.3",
     "@tanstack/router-plugin": "^1.168.12",
-    "nitro": "latest",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "tailwindcss": "^4.3.0"
@@ -36,6 +33,7 @@
     "@babel/core": "^7.29.7",
     "@playwright/test": "^1.60.0",
     "@rolldown/plugin-babel": "^0.2.3",
+    "@tailwindcss/vite": "^4.3.0",
     "@tanstack/devtools-vite": "^0.7.0",
     "@tanstack/eslint-plugin-router": "^1.162.0",
     "@testing-library/dom": "^10.4.1",
@@ -53,6 +51,7 @@
     "fallow": "^2.85.0",
     "jsdom": "^29.1.1",
     "lefthook": "^2.1.9",
+    "nitro": "latest",
     "oxfmt": "^0.52.0",
     "oxlint": "^1.67.0",
     "oxlint-tsgolint": "^0.23.0",
@@ -61,8 +60,7 @@
     "stylelint-config-standard": "^40.0.0",
     "typescript": "^6.0.3",
     "vite": "^8.0.14",
-    "vitest": "^4.1.7",
-    "web-vitals": "^5.3.0"
+    "vitest": "^4.1.7"
   },
   "packageManager": "pnpm@11.5.2"
 }

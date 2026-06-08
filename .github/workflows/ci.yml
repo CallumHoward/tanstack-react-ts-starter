@@ -46,6 +46,11 @@ jobs:
       - name: Format check
         run: pnpm format:check
 
+      # Static codebase-health gate: dead code, duplication, complexity.
+      # Fails on any finding; zero baseline established 2026-06.
+      - name: Fallow
+        run: pnpm fallow
+
       - name: Test
         run: pnpm test
 
