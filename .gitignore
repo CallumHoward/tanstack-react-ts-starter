@@ -13,6 +13,8 @@ count.txt
 todos.json
 .claude/*
 !.claude/skills/
+!.claude/settings.json
+!.claude/hooks/
 stats.html
 test-results
 playwright-report
