@@ -16,6 +16,7 @@ export default defineConfig({
     "eslint-plugin-playwright",
     { name: "react-hooks-js", specifier: "eslint-plugin-react-hooks" },
     { name: "router", specifier: "@tanstack/eslint-plugin-router" },
+    { name: "check-file", specifier: "eslint-plugin-check-file" },
   ],
   categories: {
     correctness: "error",
@@ -25,7 +26,7 @@ export default defineConfig({
   },
   ignorePatterns: [".output", "dist", "src/routeTree.gen.ts"],
   rules: {
-    "unicorn/filename-case": "off",
+    "unicorn/filename-case": ["error", { case: "kebabCase" }],
     "unicorn/no-null": "off",
     "react/only-export-components": "warn",
     "react/no-array-index-key": "error",
@@ -37,6 +38,27 @@ export default defineConfig({
     "typescript/no-unnecessary-condition": "warn",
 
     "import/no-cycle": "error",
+
+    "check-file/filename-blocklist": [
+      "error",
+      {
+        "**/*.js": "*.ts",
+        "**/*.jsx": "*.tsx",
+        "**/*.mjs": "*.ts",
+        "**/*.cjs": "*.ts",
+        "**/__test*/**": "co-located *.test.ts (no __tests__ dirs)",
+      },
+    ],
+
+    "check-file/filename-naming-convention": [
+      "error",
+      {
+        "src/**/*.{ts,tsx}": "+([^.])?(.@(test|stories|d))",
+        "e2e/**/*.{ts,tsx}": "+([^.])?(.@(spec))",
+        "*.{ts,tsx}": "+([^.])?(.@(config|d))",
+      },
+      { ignoreMiddleExtensions: false },
+    ],
 
     "jsdoc/check-tag-names": "error",
     "jsdoc/check-property-names": "error",
@@ -73,6 +95,10 @@ export default defineConfig({
         "react/only-export-components": "off",
         "router/create-route-property-order": "error",
         "router/route-param-names": "error",
+        // Required for TanStack Router: route files ($postId, _layout, dotted
+        // nesting) aren't kebab and their dots look like secondary extensions.
+        "unicorn/filename-case": "off",
+        "check-file/filename-naming-convention": "off",
       },
     },
     {
