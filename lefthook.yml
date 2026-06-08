@@ -1,10 +1,11 @@
 pre-commit:
   parallel: true
   jobs:
-    - run: pnpm eslint --quiet --fix '{staged_files}'
+    - run: pnpm exec oxlint --quiet --fix '{staged_files}'
       glob: "*.{ts,tsx}"
       stage_fixed: true
-    - run: pnpm prettier --ignore-unknown --write '{staged_files}'
+    - run: pnpm exec oxfmt '{staged_files}'
+      glob: "*.{ts,tsx,js,jsx,json,jsonc,css,md,yaml,yml,html}"
       stage_fixed: true
     - run: pnpm check
       glob: "*.{ts,tsx}"
