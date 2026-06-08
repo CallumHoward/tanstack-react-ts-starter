@@ -12,9 +12,5 @@ pre-commit:
       stage_fixed: true
     - run: pnpm check
       glob: "*.{ts,tsx}"
-    # Mirrors the CI Fallow gate (fallow --fail-on-issues) so dead code,
-    # duplication, and complexity regressions surface at commit time. Full
-    # project scan (sub-second); gated to code/manifest changes so docs- or
-    # CSS-only commits skip it. package.json / .fallowrc.json affect findings.
     - run: pnpm fallow
       glob: "*.{ts,tsx,js,jsx,mjs,cjs,json,jsonc}"
