@@ -1,0 +1,29 @@
+import "@testing-library/jest-dom/vitest";
+import { cleanup } from "@testing-library/react";
+import { afterEach, expect } from "vitest";
+import { configureAxe } from "vitest-axe";
+import * as matchers from "vitest-axe/matchers";
+
+declare module "vitest" {
+  interface Assertion {
+    toHaveNoViolations(): void;
+  }
+}
+
+// oxlint-disable-next-line vitest/require-hook
+expect.extend(matchers);
+
+// oxlint-disable-next-line vitest/require-top-level-describe
+afterEach(() => {
+  cleanup();
+});
+
+export const axe: (html: string) => Promise<{ violations: unknown[] }> = configureAxe({
+  rules: {
+    // jsdom has no canvas, so axe can't compute colours
+    "color-contrast": { enabled: false },
+    // Components are rendered in isolation, not as a full page, so the
+    // page-level landmark best-practice rule does not apply here.
+    region: { enabled: false },
+  },
+});
