@@ -12,3 +12,5 @@ pre-commit:
       stage_fixed: true
     - run: pnpm check
       glob: "*.{ts,tsx}"
+    - run: pnpm fallow
+      glob: "*.{ts,tsx,js,jsx,mjs,cjs,json,jsonc}"
