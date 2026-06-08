@@ -11,7 +11,8 @@ count.txt
 .output
 .vinxi
 todos.json
-.claude
+.claude/*
+!.claude/skills/
 stats.html
 test-results
 playwright-report
