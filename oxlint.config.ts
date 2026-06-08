@@ -26,7 +26,7 @@ export default defineConfig({
   },
   ignorePatterns: [".output", "dist", "src/routeTree.gen.ts"],
   rules: {
-    "unicorn/filename-case": "off",
+    "unicorn/filename-case": ["error", { case: "kebabCase" }],
     "unicorn/no-null": "off",
     "react/only-export-components": "warn",
     "react/no-array-index-key": "error",
@@ -52,14 +52,18 @@ export default defineConfig({
       },
     ],
 
-    // kebab-case filenames; the only allowed secondary extensions are
-    // .test / .spec / .stories. Scoped to src + e2e — route files are
-    // exempted below (TanStack Router naming) and root configs aren't matched.
+    // Allowed secondary extensions, per directory (case is handled by
+    // unicorn/filename-case above; `[^.]` base is intentionally case-agnostic).
+    // Route files are exempted below (TanStack Router dotted/`$param` names).
+    //   src:  .test / .stories / .d   (no .spec)
+    //   e2e:  .spec only
+    //   root: .config / .d
     "check-file/filename-naming-convention": [
       "error",
       {
-        "src/**/*.{ts,tsx}": "+([a-z0-9])*(-+([a-z0-9]))?(.@(test|spec|stories))",
-        "e2e/**/*.{ts,tsx}": "+([a-z0-9])*(-+([a-z0-9]))?(.@(test|spec|stories))",
+        "src/**/*.{ts,tsx}": "+([^.])?(.@(test|stories|d))",
+        "e2e/**/*.{ts,tsx}": "+([^.])?(.@(spec))",
+        "*.{ts,tsx}": "+([^.])?(.@(config|d))",
       },
       { ignoreMiddleExtensions: false },
     ],
@@ -99,7 +103,9 @@ export default defineConfig({
         "react/only-export-components": "off",
         "router/create-route-property-order": "error",
         "router/route-param-names": "error",
-        // TanStack Router file conventions (__root, $param, _layout) aren't kebab.
+        // TanStack Router file conventions (__root, $postId, _layout, dotted
+        // nesting) aren't kebab and use dots that look like secondary extensions.
+        "unicorn/filename-case": "off",
         "check-file/filename-naming-convention": "off",
       },
     },
