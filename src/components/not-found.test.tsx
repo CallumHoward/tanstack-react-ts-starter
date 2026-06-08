@@ -15,7 +15,7 @@ describe("NotFound", () => {
   it("shows the page-not-found message", () => {
     render(<NotFound />);
 
-    expect(screen.getByText("Page not found")).toBeInTheDocument();
+    expect(screen.getByText("Page not found")).toBeVisible();
   });
 
   it("has no accessibility violations", async () => {
