@@ -15,6 +15,7 @@ todos.json
 !.claude/skills/
 !.claude/settings.json
 !.claude/hooks/
+!.claude/memory/
 stats.html
 test-results
 playwright-report
