@@ -20,12 +20,6 @@
           "responsive"
         ]
       }
-    ],
-    "import-notation": null,
-    "lightness-notation": null,
-    "hue-degree-notation": null,
-    "declaration-empty-line-before": null,
-    "rule-empty-line-before": null,
-    "font-family-name-quotes": null
+    ]
   }
 }
