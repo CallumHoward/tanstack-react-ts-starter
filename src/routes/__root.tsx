@@ -37,7 +37,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="min-h-screen flex flex-col items-center">
+      <body className="flex min-h-screen flex-col items-center">
         {children}
         <TanStackDevtools
           config={{
