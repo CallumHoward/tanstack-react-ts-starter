@@ -35,6 +35,7 @@ export default defineConfig(({ mode }) => {
     ],
     test: {
       environment: "jsdom",
+      setupFiles: ["./vitest-setup.ts"],
       // Playwright e2e specs live in e2e/ and must not be picked up by Vitest.
       exclude: [...configDefaults.exclude, "e2e/**"],
     },
