@@ -39,8 +39,6 @@ export default defineConfig({
 
     "import/no-cycle": "error",
 
-    // TypeScript-only source: block JS-family files, and ban __test(s)__
-    // dirs (co-locate tests as *.test.ts instead).
     "check-file/filename-blocklist": [
       "error",
       {
@@ -52,12 +50,6 @@ export default defineConfig({
       },
     ],
 
-    // Allowed secondary extensions, per directory (case is handled by
-    // unicorn/filename-case above; `[^.]` base is intentionally case-agnostic).
-    // Route files are exempted below (TanStack Router dotted/`$param` names).
-    //   src:  .test / .stories / .d   (no .spec)
-    //   e2e:  .spec only
-    //   root: .config / .d
     "check-file/filename-naming-convention": [
       "error",
       {
@@ -103,8 +95,6 @@ export default defineConfig({
         "react/only-export-components": "off",
         "router/create-route-property-order": "error",
         "router/route-param-names": "error",
-        // TanStack Router file conventions (__root, $postId, _layout, dotted
-        // nesting) aren't kebab and use dots that look like secondary extensions.
         "unicorn/filename-case": "off",
         "check-file/filename-naming-convention": "off",
       },
