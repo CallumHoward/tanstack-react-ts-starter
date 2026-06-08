@@ -38,6 +38,8 @@ export default defineConfig(({ mode }) => {
       setupFiles: ["./vitest-setup.ts"],
       // Playwright e2e specs live in e2e/ and must not be picked up by Vitest.
       exclude: [...configDefaults.exclude, "e2e/**"],
+      // Type tests (*.test-d.ts). Only spawns tsc when such files exist.
+      typecheck: { enabled: true },
     },
   };
 });
