@@ -13,3 +13,6 @@ count.txt
 todos.json
 .claude
 stats.html
+test-results
+playwright-report
+playwright/.cache
