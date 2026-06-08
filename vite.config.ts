@@ -22,7 +22,6 @@ export default defineConfig(({ mode }) => {
   const modePlugins = mode === "test" ? [] : developmentPlugins;
 
   return {
-    // Vite 8 resolves tsconfig `paths` natively, replacing vite-tsconfig-paths.
     resolve: {
       tsconfigPaths: true,
     },
