@@ -25,7 +25,7 @@ export default defineConfig({
   env: {
     builtin: true,
   },
-  ignorePatterns: [".output", "dist", "src/routeTree.gen.ts", "vitest-setup.ts", "**/*.test-d.ts"],
+  ignorePatterns: [".output", "dist", "src/routeTree.gen.ts", "vitest-setup.ts"],
   rules: {
     "unicorn/filename-case": ["error", { case: "kebabCase" }],
     "unicorn/no-null": "off",
@@ -54,7 +54,7 @@ export default defineConfig({
     "check-file/filename-naming-convention": [
       "error",
       {
-        "src/**/*.{ts,tsx}": "+([^.])?(.@(test|stories|d))",
+        "src/**/*.{ts,tsx}": "+([^.])?(.@(test|test-d|stories|d))",
         "e2e/**/*.{ts,tsx}": "+([^.])?(.@(spec))",
         "*.{ts,tsx}": "+([^.])?(.@(config|d))",
       },
@@ -133,6 +133,14 @@ export default defineConfig({
         "playwright/no-focused-test": "error",
         "playwright/no-conditional-in-test": "warn",
         "playwright/valid-expect": "error",
+      },
+    },
+    {
+      // Type tests assert with top-level expectTypeOf, not runtime tests/hooks.
+      files: ["**/*.test-d.{ts,tsx}"],
+      rules: {
+        "vitest/require-hook": "off",
+        "vitest/require-top-level-describe": "off",
       },
     },
   ],
