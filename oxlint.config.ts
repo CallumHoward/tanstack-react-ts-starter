@@ -25,7 +25,7 @@ export default defineConfig({
   env: {
     builtin: true,
   },
-  ignorePatterns: [".output", "dist", "src/routeTree.gen.ts", "vitest-setup.ts"],
+  ignorePatterns: [".output", "dist", "src/routeTree.gen.ts", "vitest-setup.ts", "**/*.test-d.ts"],
   rules: {
     "unicorn/filename-case": ["error", { case: "kebabCase" }],
     "unicorn/no-null": "off",
