@@ -6,9 +6,9 @@ description: Conventions for writing unit tests in this repository (Vitest + Rea
 # Unit testing
 
 Stack: **Vitest** + **React Testing Library** (jsdom). `vitest-setup.ts`
-registers jest-dom matchers, RTL `cleanup`, and a configured `vitest-axe`
-`axe` helper globally — you do not need to set those up per file. Co-locate
-tests as `*.test.tsx` next to the code under test.
+registers jest-dom matchers and RTL `cleanup` globally (no per-file setup),
+and **exports** a configured `vitest-axe` `axe` helper that tests import
+where needed. Co-locate tests as `*.test.tsx` next to the code under test.
 
 ## Rules
 
@@ -39,6 +39,9 @@ The `axe` helper from `vitest-setup.ts` runs axe-core against a rendered node.
 Pass the RTL `container` (a DOM node), not its `innerHTML`:
 
 ```tsx
+import { render } from "@testing-library/react";
+import { expect, it } from "vitest";
+
 import { axe } from "../../vitest-setup";
 
 it("has no accessibility violations", async () => {
