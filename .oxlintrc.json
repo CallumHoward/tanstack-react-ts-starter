@@ -3,7 +3,8 @@
   "plugins": ["typescript", "unicorn", "oxc", "react", "jsx-a11y", "import", "vitest", "promise"],
   "jsPlugins": [
     "eslint-plugin-playwright",
-    { "name": "react-hooks-js", "specifier": "eslint-plugin-react-hooks" }
+    { "name": "react-hooks-js", "specifier": "eslint-plugin-react-hooks" },
+    { "name": "router", "specifier": "@tanstack/eslint-plugin-router" }
   ],
   "categories": {
     "correctness": "error"
@@ -52,7 +53,9 @@
     {
       "files": ["src/routes/**/*.{ts,tsx}"],
       "rules": {
-        "react/only-export-components": "off"
+        "react/only-export-components": "off",
+        "router/create-route-property-order": "error",
+        "router/route-param-names": "error"
       }
     },
     {
