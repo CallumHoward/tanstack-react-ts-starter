@@ -13,6 +13,9 @@
     "check": "tsc --noEmit",
     "postinstall": "lefthook install"
   },
+  "imports": {
+    "#/*": "./src/*"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
     "@tanstack/react-devtools": "^0.10.5",
