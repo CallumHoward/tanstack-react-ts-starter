@@ -21,6 +21,6 @@ describe("NotFound", () => {
   it("has no accessibility violations", async () => {
     const { container } = render(<NotFound />);
 
-    expect(await axe(container.innerHTML)).toHaveNoViolations();
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

@@ -16,7 +16,7 @@ afterEach(() => {
   cleanup();
 });
 
-export const axe: (html: string) => Promise<{ violations: unknown[] }> = configureAxe({
+export const axe = configureAxe({
   rules: {
     // jsdom has no canvas, so axe can't compute colours
     "color-contrast": { enabled: false },

@@ -101,6 +101,7 @@ export default defineConfig({
         "testing-library/no-await-sync-queries": "error",
         "testing-library/no-debugging-utils": "warn",
         "testing-library/no-dom-import": ["error", "react"],
+        "testing-library/no-node-access": "error",
         "testing-library/no-promise-in-fire-event": "error",
         "testing-library/no-unnecessary-act": "error",
         "testing-library/no-wait-for-multiple-assertions": "error",
