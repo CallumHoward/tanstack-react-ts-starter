@@ -22,5 +22,6 @@ try {
   cpSync(source, dest, { recursive: true });
   console.log(`[fallow-skill] installed skill -> ${dest}`);
 } catch (error) {
-  console.warn(`[fallow-skill] skipped (${error.message})`);
+  const message = error instanceof Error ? error.message : String(error);
+  console.warn(`[fallow-skill] skipped (${message})`);
 }
