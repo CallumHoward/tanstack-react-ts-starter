@@ -2,7 +2,7 @@ pre-commit:
   parallel: true
   jobs:
     - run: pnpm exec oxlint --quiet --fix '{staged_files}'
-      glob: "*.{ts,tsx}"
+      glob: "*.{ts,tsx,js,jsx,mjs,cjs}"
       stage_fixed: true
     - run: pnpm exec stylelint --fix '{staged_files}'
       glob: "*.css"

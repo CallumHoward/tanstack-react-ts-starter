@@ -16,6 +16,7 @@ export default defineConfig({
     "eslint-plugin-playwright",
     { name: "react-hooks-js", specifier: "eslint-plugin-react-hooks" },
     { name: "router", specifier: "@tanstack/eslint-plugin-router" },
+    { name: "check-file", specifier: "eslint-plugin-check-file" },
   ],
   categories: {
     correctness: "error",
@@ -37,6 +38,17 @@ export default defineConfig({
     "typescript/no-unnecessary-condition": "warn",
 
     "import/no-cycle": "error",
+
+    // TypeScript-only source: block committing JS-family files.
+    "check-file/filename-blocklist": [
+      "error",
+      {
+        "**/*.js": "*.ts",
+        "**/*.jsx": "*.tsx",
+        "**/*.mjs": "*.ts",
+        "**/*.cjs": "*.ts",
+      },
+    ],
 
     "jsdoc/check-tag-names": "error",
     "jsdoc/check-property-names": "error",

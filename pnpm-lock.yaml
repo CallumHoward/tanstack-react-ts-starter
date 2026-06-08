@@ -87,6 +87,9 @@ importers:
       babel-plugin-react-compiler:
         specifier: ^1.0.0
         version: 1.0.0
+      eslint-plugin-check-file:
+        specifier: ^3.3.1
+        version: 3.3.1(eslint@10.4.1(jiti@2.7.0))
       eslint-plugin-playwright:
         specifier: ^2.10.4
         version: 2.10.4(eslint@10.4.1(jiti@2.7.0))
@@ -2071,6 +2074,12 @@ packages:
   escape-string-regexp@4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
+
+  eslint-plugin-check-file@3.3.1:
+    resolution: {integrity: sha512-b7fDkp8Y0T9vloTYSrkMnb5Cqpk1bc6+jDQdgKIhzdwb47NmLAvMFYo3SzHOPF8u4SEsOVhmrNSbo6Sp633syg==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      eslint: '>=9.0.0'
 
   eslint-plugin-playwright@2.10.4:
     resolution: {integrity: sha512-l0V/VxyqfFbtqCTxj5AdRn3Q6S/hIW4nKBnKZVleVbZ24N2My6Usj//ytX3dKKqAoSbvKck9YtSytfdZ5qjLuA==}
@@ -5012,6 +5021,12 @@ snapshots:
   escalade@3.2.0: {}
 
   escape-string-regexp@4.0.0: {}
+
+  eslint-plugin-check-file@3.3.1(eslint@10.4.1(jiti@2.7.0)):
+    dependencies:
+      eslint: 10.4.1(jiti@2.7.0)
+      is-glob: 4.0.3
+      micromatch: 4.0.8
 
   eslint-plugin-playwright@2.10.4(eslint@10.4.1(jiti@2.7.0)):
     dependencies:
