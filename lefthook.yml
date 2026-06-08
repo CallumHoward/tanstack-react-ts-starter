@@ -4,6 +4,9 @@ pre-commit:
     - run: pnpm exec oxlint --quiet --fix '{staged_files}'
       glob: "*.{ts,tsx}"
       stage_fixed: true
+    - run: pnpm exec stylelint --fix '{staged_files}'
+      glob: "*.css"
+      stage_fixed: true
     - run: pnpm exec oxfmt '{staged_files}'
       glob: "*.{ts,tsx,js,jsx,json,jsonc,css,md,yaml,yml,html}"
       stage_fixed: true
