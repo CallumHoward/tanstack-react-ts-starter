@@ -1,6 +1,7 @@
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
+import { defineConfig } from "oxlint";
+
+export default defineConfig({
+  plugins: [
     "typescript",
     "unicorn",
     "oxc",
@@ -9,21 +10,21 @@
     "import",
     "vitest",
     "promise",
-    "jsdoc"
+    "jsdoc",
   ],
-  "jsPlugins": [
+  jsPlugins: [
     "eslint-plugin-playwright",
-    { "name": "react-hooks-js", "specifier": "eslint-plugin-react-hooks" },
-    { "name": "router", "specifier": "@tanstack/eslint-plugin-router" }
+    { name: "react-hooks-js", specifier: "eslint-plugin-react-hooks" },
+    { name: "router", specifier: "@tanstack/eslint-plugin-router" },
   ],
-  "categories": {
-    "correctness": "error"
+  categories: {
+    correctness: "error",
   },
-  "env": {
-    "builtin": true
+  env: {
+    builtin: true,
   },
-  "ignorePatterns": [".output", "dist", "src/routeTree.gen.ts"],
-  "rules": {
+  ignorePatterns: [".output", "dist", "src/routeTree.gen.ts"],
+  rules: {
     "unicorn/filename-case": "off",
     "unicorn/no-null": "off",
     "react/only-export-components": "warn",
@@ -57,32 +58,32 @@
     "react-hooks-js/set-state-in-render": "error",
     "react-hooks-js/unsupported-syntax": "warn",
     "react-hooks-js/config": "error",
-    "react-hooks-js/gating": "error"
+    "react-hooks-js/gating": "error",
   },
-  "overrides": [
+  overrides: [
     {
-      "files": ["**/*.test.{ts,tsx}", "**/*.spec.{ts,tsx}", "!e2e/**"],
-      "rules": {
-        "vitest/require-top-level-describe": "error"
-      }
+      files: ["**/*.test.{ts,tsx}", "**/*.spec.{ts,tsx}", "!e2e/**"],
+      rules: {
+        "vitest/require-top-level-describe": "error",
+      },
     },
     {
-      "files": ["src/routes/**/*.{ts,tsx}"],
-      "rules": {
+      files: ["src/routes/**/*.{ts,tsx}"],
+      rules: {
         "react/only-export-components": "off",
         "router/create-route-property-order": "error",
-        "router/route-param-names": "error"
-      }
+        "router/route-param-names": "error",
+      },
     },
     {
-      "files": ["e2e/**/*.{ts,tsx}"],
-      "rules": {
+      files: ["e2e/**/*.{ts,tsx}"],
+      rules: {
         "playwright/require-top-level-describe": "error",
         "playwright/no-skipped-test": "warn",
         "playwright/no-focused-test": "error",
         "playwright/no-conditional-in-test": "warn",
-        "playwright/valid-expect": "error"
-      }
-    }
-  ]
-}
+        "playwright/valid-expect": "error",
+      },
+    },
+  ],
+});
