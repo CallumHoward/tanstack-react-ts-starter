@@ -2,7 +2,7 @@
 
 TanStack Start app (React 19 + TypeScript). This file is the primary, auto-loaded
 project memory. Detailed conventions and the rationale behind tooling decisions
-live in @.claude/memory/MEMORY.md.
+live in `.claude/rules/` (also auto-loaded).
 
 ## Package manager
 
@@ -26,7 +26,7 @@ live in @.claude/memory/MEMORY.md.
 | Dev / build           | Vite                                | `pnpm dev` / `pnpm build` / `pnpm serve` |
 
 There is no ESLint or Prettier — oxlint/oxfmt replace them. ESLint plugins are
-loaded through oxlint's `jsPlugins` (see MEMORY.md).
+loaded through oxlint's `jsPlugins` (see `.claude/rules/conventions.md`).
 
 ## Conventions (enforced by lint)
 

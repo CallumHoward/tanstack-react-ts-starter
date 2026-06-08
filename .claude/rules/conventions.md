@@ -1,9 +1,8 @@
-# Detailed conventions & decisions
+# Conventions & decisions
 
-Imported by `/CLAUDE.md`. Records the *why* behind the toolchain so decisions
-aren't re-litigated. (Note: this path is auto-loaded only because `CLAUDE.md`
-`@import`s it — `.claude/memory/MEMORY.md` is not an auto-loaded location on its
-own; that name otherwise refers to Claude Code's machine-local auto-memory.)
+A `.claude/rules/` file — auto-loaded as project memory alongside `CLAUDE.md`
+(rules without a `paths:` frontmatter load at startup). Records the *why* behind
+the toolchain so decisions aren't re-litigated.
 
 ## oxc toolchain
 
