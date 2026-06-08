@@ -39,7 +39,8 @@ export default defineConfig({
 
     "import/no-cycle": "error",
 
-    // TypeScript-only source: block committing JS-family files.
+    // TypeScript-only source: block JS-family files, and ban __test(s)__
+    // dirs (co-locate tests as *.test.ts instead).
     "check-file/filename-blocklist": [
       "error",
       {
@@ -47,7 +48,20 @@ export default defineConfig({
         "**/*.jsx": "*.tsx",
         "**/*.mjs": "*.ts",
         "**/*.cjs": "*.ts",
+        "**/__test*/**": "co-located *.test.ts (no __tests__ dirs)",
       },
+    ],
+
+    // kebab-case filenames; the only allowed secondary extensions are
+    // .test / .spec / .stories. Scoped to src + e2e — route files are
+    // exempted below (TanStack Router naming) and root configs aren't matched.
+    "check-file/filename-naming-convention": [
+      "error",
+      {
+        "src/**/*.{ts,tsx}": "+([a-z0-9])*(-+([a-z0-9]))?(.@(test|spec|stories))",
+        "e2e/**/*.{ts,tsx}": "+([a-z0-9])*(-+([a-z0-9]))?(.@(test|spec|stories))",
+      },
+      { ignoreMiddleExtensions: false },
     ],
 
     "jsdoc/check-tag-names": "error",
@@ -85,6 +99,8 @@ export default defineConfig({
         "react/only-export-components": "off",
         "router/create-route-property-order": "error",
         "router/route-param-names": "error",
+        // TanStack Router file conventions (__root, $param, _layout) aren't kebab.
+        "check-file/filename-naming-convention": "off",
       },
     },
     {
