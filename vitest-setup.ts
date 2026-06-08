@@ -10,10 +10,8 @@ declare module "vitest" {
   }
 }
 
-// oxlint-disable-next-line vitest/require-hook
 expect.extend(matchers);
 
-// oxlint-disable-next-line vitest/require-top-level-describe
 afterEach(() => {
   cleanup();
 });
