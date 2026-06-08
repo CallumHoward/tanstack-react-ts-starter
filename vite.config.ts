@@ -38,6 +38,16 @@ export default defineConfig(({ mode }) => {
       setupFiles: ["./vitest-setup.ts"],
       // Playwright e2e specs live in e2e/ and must not be picked up by Vitest.
       exclude: [...configDefaults.exclude, "e2e/**"],
+      coverage: {
+        provider: "v8",
+        // cobertura feeds diff-cover; text prints a console summary.
+        reporter: ["text", "cobertura"],
+        // Measure all source, so untested changed files count as 0% in the
+        // diff-coverage gate rather than being silently absent from the report.
+        all: true,
+        include: ["src/**/*.{ts,tsx}"],
+        exclude: ["src/**/*.test.{ts,tsx}", "src/routeTree.gen.ts"],
+      },
     },
   };
 });
