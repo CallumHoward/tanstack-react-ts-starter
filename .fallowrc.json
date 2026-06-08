@@ -1,10 +1,4 @@
 {
   "$schema": "https://raw.githubusercontent.com/fallow-rs/fallow/main/schema.json",
-  "ignoreDependencies": [
-    // Resolved by name through reactCompilerPreset() (@vitejs/plugin-react) as a
-    // Babel preset in vite.config.ts. The preset loads it dynamically, so static
-    // analysis cannot see the reference. Remove this entry if the React Compiler
-    // ("compiler" add-on) is ever dropped.
-    "babel-plugin-react-compiler"
-  ]
+  "ignoreDependencies": ["babel-plugin-react-compiler"]
 }
