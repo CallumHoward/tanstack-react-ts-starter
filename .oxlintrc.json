@@ -1,6 +1,16 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["typescript", "unicorn", "oxc", "react", "jsx-a11y", "import", "vitest", "promise"],
+  "plugins": [
+    "typescript",
+    "unicorn",
+    "oxc",
+    "react",
+    "jsx-a11y",
+    "import",
+    "vitest",
+    "promise",
+    "jsdoc"
+  ],
   "jsPlugins": [
     "eslint-plugin-playwright",
     { "name": "react-hooks-js", "specifier": "eslint-plugin-react-hooks" },
@@ -26,6 +36,12 @@
     "typescript/no-unnecessary-condition": "warn",
 
     "import/no-cycle": "error",
+
+    "jsdoc/check-tag-names": "error",
+    "jsdoc/check-property-names": "error",
+    "jsdoc/check-access": "error",
+    "jsdoc/empty-tags": "error",
+    "jsdoc/implements-on-classes": "error",
 
     "react-hooks-js/static-components": "error",
     "react-hooks-js/use-memo": "error",
