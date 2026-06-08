@@ -1,0 +1,41 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "react", "jsx-a11y", "import", "vitest", "promise"],
+  "jsPlugins": ["eslint-plugin-playwright"],
+  "categories": {
+    "correctness": "error"
+  },
+  "env": {
+    "builtin": true
+  },
+  "ignorePatterns": [".output", "dist", "src/routeTree.gen.ts"],
+  "rules": {
+    "unicorn/filename-case": "off",
+    "unicorn/no-null": "off",
+    "react/only-export-components": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.{ts,tsx}", "**/*.spec.{ts,tsx}"],
+      "rules": {
+        "vitest/require-top-level-describe": "error"
+      }
+    },
+    {
+      "files": ["src/routes/**/*.{ts,tsx}"],
+      "rules": {
+        "react/only-export-components": "off"
+      }
+    },
+    {
+      "files": ["e2e/**/*.{ts,tsx}"],
+      "rules": {
+        "playwright/require-top-level-describe": "error",
+        "playwright/no-skipped-test": "warn",
+        "playwright/no-focused-test": "error",
+        "playwright/no-conditional-in-test": "warn",
+        "playwright/valid-expect": "error"
+      }
+    }
+  ]
+}

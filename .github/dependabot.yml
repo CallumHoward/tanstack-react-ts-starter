@@ -10,12 +10,15 @@ updates:
     groups:
       tanstack:
         patterns: ["@tanstack/*"]
-      eslint:
-        patterns: ["eslint*", "@vitest/eslint-plugin"]
+      oxc:
+        patterns: ["oxlint*", "oxfmt", "eslint-plugin-playwright"]
       types:
         patterns: ["@types/*"]
     ignore:
       - dependency-name: "nitro" # intentionally tracks the v3 beta "latest"
+      # @typescript/native-preview (tsgo) ships daily dev builds; bump it by
+      # hand rather than churning a PR every release.
+      - dependency-name: "@typescript/native-preview"
       # Keep @types/node on the major matching the Node runtime (.nvmrc);
       # bump it by hand when moving to the next Node LTS.
       - dependency-name: "@types/node"
