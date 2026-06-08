@@ -3,7 +3,6 @@ import { devtools } from "@tanstack/devtools-vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact, { reactCompilerPreset } from "@vitejs/plugin-react";
 import babel from "@rolldown/plugin-babel";
-import viteTsConfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "@tailwindcss/vite";
 import { nitro } from "nitro/vite";
 import { visualizer } from "rollup-plugin-visualizer";
@@ -23,10 +22,11 @@ export default defineConfig(({ mode }) => {
   const modePlugins = mode === "test" ? [] : developmentPlugins;
 
   return {
+    // Vite 8 resolves tsconfig `paths` natively, replacing vite-tsconfig-paths.
+    resolve: {
+      tsconfigPaths: true,
+    },
     plugins: [
-      viteTsConfigPaths({
-        projects: ["./tsconfig.json"],
-      }),
       tailwindcss(),
       ...modePlugins,
       viteReact(),
