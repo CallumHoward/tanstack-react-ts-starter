@@ -1,8 +1,7 @@
 {
   "mcpServers": {
     "fallow": {
-      "command": "pnpm",
-      "args": ["exec", "fallow-mcp"]
+      "command": "node_modules/.bin/fallow-mcp"
     }
   }
 }
