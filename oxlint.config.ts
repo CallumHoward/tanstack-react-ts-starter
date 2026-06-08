@@ -95,6 +95,8 @@ export default defineConfig({
         "react/only-export-components": "off",
         "router/create-route-property-order": "error",
         "router/route-param-names": "error",
+        // Required for TanStack Router: route files ($postId, _layout, dotted
+        // nesting) aren't kebab and their dots look like secondary extensions.
         "unicorn/filename-case": "off",
         "check-file/filename-naming-convention": "off",
       },
