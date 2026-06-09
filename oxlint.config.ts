@@ -135,13 +135,5 @@ export default defineConfig({
         "playwright/valid-expect": "error",
       },
     },
-    {
-      // Type tests assert with top-level expectTypeOf, not runtime tests/hooks.
-      files: ["**/*.test-d.{ts,tsx}"],
-      rules: {
-        "vitest/require-hook": "off",
-        "vitest/require-top-level-describe": "off",
-      },
-    },
   ],
 });
