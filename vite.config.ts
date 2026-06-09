@@ -36,8 +36,12 @@ export default defineConfig(({ mode }) => {
     test: {
       environment: "jsdom",
       setupFiles: ["./vitest-setup.ts"],
+      // Restore vi.spyOn implementations and reset mock state after each test.
+      restoreMocks: true,
       // Playwright e2e specs live in e2e/ and must not be picked up by Vitest.
       exclude: [...configDefaults.exclude, "e2e/**"],
+      // Type tests (*.test-d.ts). Only spawns tsc when such files exist.
+      typecheck: { enabled: true },
       coverage: {
         provider: "v8",
         // lcov feeds diff-cover (and editor coverage-gutters); text summarizes.

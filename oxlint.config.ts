@@ -54,7 +54,7 @@ export default defineConfig({
     "check-file/filename-naming-convention": [
       "error",
       {
-        "src/**/*.{ts,tsx}": "+([^.])?(.@(test|stories|d))",
+        "src/**/*.{ts,tsx}": "+([^.])?(.@(test|test-d|stories|d))",
         "e2e/**/*.{ts,tsx}": "+([^.])?(.@(spec))",
         "*.{ts,tsx}": "+([^.])?(.@(config|d))",
       },
