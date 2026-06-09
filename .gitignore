@@ -20,11 +20,6 @@ test-results
 playwright-report
 playwright/.cache
 
-# Capacitor: generated mobile web root + native iOS build artifacts
+# Capacitor: generated mobile web root (iOS build artifacts are handled by
+# the Capacitor-managed ios/.gitignore)
 www
-/ios/App/Pods
-/ios/App/App/public
-/ios/App/App/capacitor.config.json
-/ios/App/App/Info.plist.bak
-DerivedData
-xcuserdata
