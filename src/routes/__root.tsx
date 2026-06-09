@@ -4,7 +4,9 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import { AppShell } from "#/components/app-shell";
 import { NotFound } from "#/components/not-found";
+import { WebTabBar } from "#/components/web-tab-bar";
 import { getThemeServerFn } from "#/lib/theme";
+import { useNativeTabBar } from "#/lib/use-native-tab-bar";
 
 import appCss from "../styles.css?url";
 
@@ -47,6 +49,7 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   const theme = Route.useLoaderData();
+  useNativeTabBar();
 
   return (
     <html lang="en" className={theme}>
@@ -55,6 +58,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body className="flex min-h-screen flex-col items-center">
         <AppShell theme={theme}>{children}</AppShell>
+        <WebTabBar />
         <TanStackDevtools
           config={{
             position: "bottom-right",
