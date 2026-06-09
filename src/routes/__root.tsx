@@ -13,8 +13,10 @@ export const Route = createRootRoute({
         charSet: "utf8",
       },
       {
+        // viewport-fit=cover is required for env(safe-area-inset-*) to report
+        // real values on notched iOS devices (see safe-area padding in styles.css).
         name: "viewport",
-        content: "width=device-width, initial-scale=1",
+        content: "width=device-width, initial-scale=1, viewport-fit=cover",
       },
       {
         title: "TanStack Start Starter",

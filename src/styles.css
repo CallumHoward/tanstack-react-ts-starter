@@ -4,6 +4,11 @@
 body {
   @apply m-0;
 
+  /* Keep content clear of the notch/Dynamic Island and home indicator in the
+     native (Capacitor) WebView. env() resolves to 0 on the web, so this is a
+     no-op outside iOS. Requires viewport-fit=cover (set in __root.tsx). */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;

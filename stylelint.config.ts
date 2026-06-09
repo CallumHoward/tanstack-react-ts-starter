@@ -2,7 +2,8 @@ import type { Config } from "stylelint";
 
 const config: Config = {
   extends: ["stylelint-config-standard"],
-  ignoreFiles: ["dist/**", ".output/**", "node_modules/**"],
+  // www/ and ios/ hold generated Capacitor build output (minified bundles).
+  ignoreFiles: ["dist/**", ".output/**", "node_modules/**", "www/**", "ios/**"],
   rules: {
     "at-rule-no-unknown": [
       true,
