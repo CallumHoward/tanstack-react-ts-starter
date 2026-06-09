@@ -56,7 +56,25 @@ pnpm ios:open   # open in Xcode — pick a simulator, press Run
 
 ## Day-to-day
 
-After changing web code:
+Two loops, pick by need:
+
+**Live reload (fast — recommended while developing).** Points the native WebView
+at the Vite dev server, so edits hot-reload in the simulator/device with no
+rebuild:
+
+```bash
+pnpm ios:dev                    # simulator (Xcode device picker)
+pnpm ios:dev --target <udid>    # skip the picker (list: pnpm exec cap run ios --list)
+```
+
+Stop with Ctrl+C (it tears the dev server down). The build it produces is
+dev-only — it trusts the dev-server origin over cleartext http; never ship it.
+
+> Port 3000 busy (e.g. Docker)? Override: `PORT=3005 pnpm ios:dev`. For a
+> physical device, also pass your Mac's LAN IP: `HOST=192.168.1.23 pnpm ios:dev`
+> (the device must be on the same network).
+
+**Bundled build (what you ship).** Rebuilds the static assets into the app:
 
 ```bash
 pnpm ios:sync   # rebuild web + sync into ios/

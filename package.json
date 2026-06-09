@@ -12,6 +12,7 @@
     "build:mobile": "MOBILE_BUILD=true vite build && bash scripts/prepare-mobile.sh",
     "ios:add": "pnpm build:mobile && cap add ios",
     "ios:sync": "pnpm build:mobile && cap sync ios",
+    "ios:dev": "bash scripts/ios-dev.sh",
     "ios:open": "cap open ios",
     "serve": "vite preview",
     "test": "vitest run --passWithNoTests",
