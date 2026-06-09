@@ -19,3 +19,12 @@ stats.html
 test-results
 playwright-report
 playwright/.cache
+
+# Capacitor: generated mobile web root + native iOS build artifacts
+www
+/ios/App/Pods
+/ios/App/App/public
+/ios/App/App/capacitor.config.json
+/ios/App/App/Info.plist.bak
+DerivedData
+xcuserdata
