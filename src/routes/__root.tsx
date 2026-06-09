@@ -3,6 +3,8 @@ import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import { NotFound } from "@/components/not-found";
+import { WebTabBar } from "@/components/web-tab-bar";
+import { useNativeTabBar } from "@/lib/use-native-tab-bar";
 
 import appCss from "../styles.css?url";
 
@@ -36,6 +38,8 @@ export const Route = createRootRoute({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  useNativeTabBar();
+
   return (
     <html lang="en">
       <head>
@@ -43,6 +47,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body className="flex min-h-screen flex-col items-center">
         {children}
+        <WebTabBar />
         <TanStackDevtools
           config={{
             position: "bottom-right",
