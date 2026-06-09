@@ -13,16 +13,13 @@ export default defineConfig(({ mode }) => {
   const developmentPlugins = [devtools(), nitro(), tanstackStart()];
   // Bundle treemap, on demand only (`pnpm build:analyze` sets ANALYZE=true);
   // otherwise it would auto-open stats.html on every dev/build.
-  const analyzePlugins = process.env.ANALYZE
-    ? [
-        visualizer({
-          filename: "./stats.html",
-          open: true,
-          gzipSize: true,
-          brotliSize: true,
-        }),
-      ]
-    : [];
+  const analyzer = visualizer({
+    filename: "./stats.html",
+    open: true,
+    gzipSize: true,
+    brotliSize: true,
+  });
+  const analyzePlugins = process.env.ANALYZE ? [analyzer] : [];
   const modePlugins = mode === "test" ? [] : developmentPlugins;
 
   return {
