@@ -10,17 +10,19 @@ import { visualizer } from "rollup-plugin-visualizer";
 import { configDefaults, defineConfig } from "vitest/config";
 
 export default defineConfig(({ mode }) => {
-  const developmentPlugins = [
-    devtools(),
-    nitro(),
-    tanstackStart(),
-    visualizer({
-      filename: "./stats.html",
-      open: true,
-      gzipSize: true,
-      brotliSize: true,
-    }),
-  ];
+  const developmentPlugins = [devtools(), nitro(), tanstackStart()];
+  // Bundle treemap, on demand only (`pnpm build:analyze` sets ANALYZE=true);
+  // otherwise it would auto-open stats.html on every dev/build.
+  const analyzePlugins = process.env.ANALYZE
+    ? [
+        visualizer({
+          filename: "./stats.html",
+          open: true,
+          gzipSize: true,
+          brotliSize: true,
+        }),
+      ]
+    : [];
   const modePlugins = mode === "test" ? [] : developmentPlugins;
 
   return {
@@ -30,6 +32,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       tailwindcss(),
       ...modePlugins,
+      ...analyzePlugins,
       viteReact(),
       babel({
         presets: [reactCompilerPreset()],
