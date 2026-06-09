@@ -55,9 +55,8 @@ jobs:
       - name: Test
         run: pnpm test:cov
 
-      # Gate on coverage of changed lines only. diff-cover reads the single
-      # HEAD coverage report and the git diff against the base branch -- no
-      # baseline artifact or second coverage run needed.
+      # Gate coverage of changed lines only -- reads the HEAD lcov report plus
+      # the git diff against the base branch (no baseline or second run needed).
       - name: Diff coverage
         run: |
           pipx run diff-cover coverage/lcov.info \
