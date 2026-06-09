@@ -15,8 +15,8 @@ runtime).
 - `scripts/prepare-mobile.sh` copies `.output/public` into `www/` and promotes
   the shell to `www/index.html` (Capacitor's required entry point).
 - `capacitor.config.ts` points `webDir` at `www/`.
-- `www/` and the iOS build artifacts are git-ignored; the `ios/` native project
-  is committed (after you generate it — see below).
+- `www/` is git-ignored; the `ios/` native project is committed (its build
+  artifacts and generated config are excluded by Capacitor's `ios/.gitignore`).
 
 ## Scripts
 
@@ -29,17 +29,30 @@ runtime).
 
 ## First-time setup (requires macOS)
 
-Building and running iOS requires **macOS with Xcode and CocoaPods** — it cannot
-be done on Linux/CI-without-macOS. On your Mac:
+The native `ios/` project is already generated (via `pnpm ios:add`) and tracked
+in git. Capacitor 8 manages iOS dependencies with **Swift Package Manager**
+(`ios/App/CapApp-SPM/Package.swift`) — **CocoaPods is not required**.
+
+Building and running on a simulator/device requires the **full Xcode app** (the
+Command Line Tools alone are not enough — they lack `xcodebuild` and the iOS
+SDK/simulators). Install Xcode from the Mac App Store, then point the toolchain
+at it:
+
+```bash
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+xcodebuild -runFirstLaunch
+```
+
+Then build and run:
 
 ```bash
 pnpm install
-sudo gem install cocoapods   # if not already installed
-pnpm ios:add                 # generates the ios/ project
-pnpm ios:open                # open in Xcode, pick a simulator, press Run
+pnpm ios:sync   # build web assets + sync into ios/ (resolves SPM packages)
+pnpm ios:open   # open in Xcode — pick a simulator, press Run
 ```
 
-Commit the generated `ios/` folder so the native project is tracked.
+> If you ever need to regenerate the native project from scratch, delete `ios/`
+> and run `pnpm ios:add`.
 
 ## Day-to-day
 
