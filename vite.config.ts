@@ -42,6 +42,16 @@ export default defineConfig(({ mode }) => {
       exclude: [...configDefaults.exclude, "e2e/**"],
       // Type tests (*.test-d.ts). Only spawns tsc when such files exist.
       typecheck: { enabled: true },
+      coverage: {
+        provider: "v8",
+        // lcov feeds diff-cover (and editor coverage-gutters); text summarizes.
+        reporter: ["text", "lcov"],
+        // Measure all source, so untested changed files count as 0% in the
+        // diff-coverage gate rather than being silently absent from the report.
+        all: true,
+        include: ["src/**/*.{ts,tsx}"],
+        exclude: ["src/**/*.test.{ts,tsx}", "src/routeTree.gen.ts"],
+      },
     },
   };
 });

@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          # Full history so diff-cover can find the merge-base with the PR base branch.
+          fetch-depth: 0
 
       - uses: actions/setup-node@v6
         with:
@@ -50,7 +53,15 @@ jobs:
         run: pnpm fallow
 
       - name: Test
-        run: pnpm test
+        run: pnpm test:cov
+
+      # Gate coverage of changed lines only -- reads the HEAD lcov report plus
+      # the git diff against the base branch (no baseline or second run needed).
+      - name: Diff coverage
+        run: |
+          pipx run diff-cover coverage/lcov.info \
+            --compare-branch origin/${{ github.base_ref || 'main' }} \
+            --fail-under 80
 
       - name: Build
         run: pnpm build
