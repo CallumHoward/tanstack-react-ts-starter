@@ -17,10 +17,8 @@ const tailwindAtRules = [
 
 const config: Config = {
   extends: ["stylelint-config-standard"],
-  ignoreFiles: ["dist/**", ".output/**", "node_modules/**"],
-  reportDescriptionlessDisables: true,
-  reportInvalidScopeDisables: true,
-  reportNeedlessDisables: true,
+  // www/ and ios/ hold generated Capacitor build output (minified bundles).
+  ignoreFiles: ["dist/**", ".output/**", "node_modules/**", "www/**", "ios/**"],
   rules: {
     "declaration-no-important": true,
     "max-nesting-depth": [2, { ignoreAtRules: ["media", "supports", "layer"] }],
