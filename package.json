@@ -13,6 +13,7 @@
     "test:cov": "vitest run --coverage --passWithNoTests",
     "test:e2e": "playwright test",
     "lint": "oxlint --type-aware",
+    "lint:ci": "oxlint --type-aware --format=github",
     "lint:css": "stylelint \"**/*.css\"",
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",

@@ -1,3 +1,5 @@
+import process from "node:process";
+
 import babel from "@rolldown/plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
 import { devtools } from "@tanstack/devtools-vite";
@@ -35,6 +37,8 @@ export default defineConfig(({ mode }) => {
     ],
     test: {
       environment: "jsdom",
+      // In CI, also emit GitHub Actions annotations for failing tests.
+      reporters: process.env.GITHUB_ACTIONS ? ["default", "github-actions"] : ["default"],
       setupFiles: ["./vitest-setup.ts"],
       // Restore vi.spyOn implementations and reset mock state after each test.
       restoreMocks: true,
