@@ -24,7 +24,8 @@
     "build:mobile": "MOBILE_BUILD=true vite build && bash scripts/prepare-mobile.sh",
     "ios:add": "pnpm build:mobile && cap add ios",
     "ios:sync": "pnpm build:mobile && cap sync ios",
-    "ios:open": "cap open ios"
+    "ios:open": "cap open ios",
+    "ios:dev": "bash scripts/ios-dev.sh"
   },
   "dependencies": {
     "@capacitor/core": "^8.3.4",
