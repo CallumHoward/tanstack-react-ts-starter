@@ -11,15 +11,13 @@ import { configDefaults, defineConfig } from "vitest/config";
 
 export default defineConfig(({ mode }) => {
   const developmentPlugins = [devtools(), nitro(), tanstackStart()];
-  // Bundle treemap, on demand only (`pnpm build:analyze` sets ANALYZE=true);
-  // otherwise it would auto-open stats.html on every dev/build.
   const analyzer = visualizer({
     filename: "./stats.html",
     open: true,
     gzipSize: true,
     brotliSize: true,
   });
-  const analyzePlugins = process.env.ANALYZE ? [analyzer] : [];
+  const analyzePlugins = process.env.ANALYZE === "true" ? [analyzer] : [];
   const modePlugins = mode === "test" ? [] : developmentPlugins;
 
   return {
