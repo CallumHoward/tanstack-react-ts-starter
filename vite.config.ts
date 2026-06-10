@@ -10,17 +10,14 @@ import { visualizer } from "rollup-plugin-visualizer";
 import { configDefaults, defineConfig } from "vitest/config";
 
 export default defineConfig(({ mode }) => {
-  const developmentPlugins = [
-    devtools(),
-    nitro(),
-    tanstackStart(),
-    visualizer({
-      filename: "./stats.html",
-      open: true,
-      gzipSize: true,
-      brotliSize: true,
-    }),
-  ];
+  const developmentPlugins = [devtools(), nitro(), tanstackStart()];
+  const analyzer = visualizer({
+    filename: "./stats.html",
+    open: true,
+    gzipSize: true,
+    brotliSize: true,
+  });
+  const analyzePlugins = process.env.ANALYZE === "true" ? [analyzer] : [];
   const modePlugins = mode === "test" ? [] : developmentPlugins;
 
   return {
@@ -30,6 +27,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       tailwindcss(),
       ...modePlugins,
+      ...analyzePlugins,
       viteReact(),
       babel({
         presets: [reactCompilerPreset()],
