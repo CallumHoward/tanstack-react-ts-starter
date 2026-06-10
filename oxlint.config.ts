@@ -67,6 +67,19 @@ export default defineConfig({
     "jsdoc/empty-tags": "error",
     "jsdoc/implements-on-classes": "error",
 
+    // Native oxlint implementation: the JS-plugin variant (react-hooks-js/hooks)
+    // does not catch conditional/looped hook calls, so use the native rule.
+    "react-hooks/rules-of-hooks": "error",
+
+    "react-hooks-js/hooks": "error",
+    "react-hooks-js/capitalized-calls": "error",
+    "react-hooks-js/component-hook-factories": "error",
+    "react-hooks-js/no-deriving-state-in-effects": "error",
+    "react-hooks-js/memo-dependencies": "error",
+    // Newer/noisier effect-dependency rules: start as warnings.
+    "react-hooks-js/memoized-effect-dependencies": "warn",
+    "react-hooks-js/exhaustive-effect-dependencies": "warn",
+
     "react-hooks-js/static-components": "error",
     "react-hooks-js/use-memo": "error",
     "react-hooks-js/void-use-memo": "error",
