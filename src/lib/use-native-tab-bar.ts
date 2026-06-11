@@ -26,15 +26,14 @@ export function useNativeTabBar() {
   useEffect(() => {
     if (!Capacitor.isNativePlatform()) return;
 
-    // Lets CSS swap web-only layout (e.g. the fallback bar) off on native.
-    document.documentElement.classList.add("is-native");
-
     let handle: PluginListenerHandle | undefined;
     let cancelled = false;
 
     const setup = async () => {
       // contentInsetMode: "css" writes --cap-native-navigation-* vars we pad with.
       await NativeNavigation.configure({ enabled: true, contentInsetMode: "css" });
+      // Tabbed routes have no top navbar (detail routes own that).
+      await NativeNavigation.setNavbar({ hidden: true });
       await NativeNavigation.setTabbar({
         tabs: NATIVE_TABS,
         selectedId: tabIdForPath(router.state.location.pathname),

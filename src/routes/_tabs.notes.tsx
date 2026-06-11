@@ -1,6 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 
-import { NOTES, formatNoteDate, notePreview } from "@/lib/notes";
+import { NOTES, formatNoteDate, notePreview } from "#/lib/notes";
 
 export const Route = createFileRoute("/_tabs/notes")({
   component: NotesList,
