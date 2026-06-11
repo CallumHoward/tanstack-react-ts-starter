@@ -1,6 +1,8 @@
+import { Capacitor } from "@capacitor/core";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { useEffect } from "react";
 
 import { NotFound } from "@/components/not-found";
 
@@ -36,6 +38,12 @@ export const Route = createRootRoute({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  // App-wide flag so CSS can drop web-only chrome (fallback bar, in-page back
+  // link/title) on native, regardless of which route mounts first.
+  useEffect(() => {
+    if (Capacitor.isNativePlatform()) document.documentElement.classList.add("is-native");
+  }, []);
+
   return (
     <html lang="en">
       <head>

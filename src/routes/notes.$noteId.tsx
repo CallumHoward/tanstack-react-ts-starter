@@ -1,6 +1,7 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 
 import { formatNoteDate, getNote } from "@/lib/notes";
+import { useNativeNavbar } from "@/lib/use-native-navbar";
 
 export const Route = createFileRoute("/notes/$noteId")({
   component: NoteDetail,
@@ -9,6 +10,9 @@ export const Route = createFileRoute("/notes/$noteId")({
 function NoteDetail() {
   const { noteId } = Route.useParams();
   const note = getNote(noteId);
+
+  // Native Liquid Glass navbar + back button (hides the tab bar); no-op on web.
+  useNativeNavbar(note?.title ?? "Note");
 
   return (
     <main className="page note-detail">
