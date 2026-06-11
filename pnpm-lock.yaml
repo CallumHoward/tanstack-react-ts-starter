@@ -17,6 +17,9 @@ importers:
       '@capgo/capacitor-native-navigation':
         specifier: ^8.0.21
         version: 8.0.21(@capacitor/core@8.3.4)
+      '@capgo/capacitor-transitions':
+        specifier: ^8.1.8
+        version: 8.1.8(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(solid-js@1.9.10)
       '@tanstack/react-devtools':
         specifier: ^0.10.5
         version: 0.10.5(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(csstype@3.2.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(solid-js@1.9.10)
@@ -119,7 +122,7 @@ importers:
         version: 2.1.9
       nitro:
         specifier: latest
-        version: 3.0.260522-beta(chokidar@5.0.0)(jiti@2.7.0)(lru-cache@11.5.1)(vite@8.0.14(@types/node@24.12.4)(jiti@2.7.0)(tsx@4.20.6)(yaml@2.8.2))(xml2js@0.6.2)
+        version: 3.0.260603-beta(chokidar@5.0.0)(jiti@2.7.0)(lru-cache@11.5.1)(vite@8.0.14(@types/node@24.12.4)(jiti@2.7.0)(tsx@4.20.6)(yaml@2.8.2))(xml2js@0.6.2)
       oxfmt:
         specifier: ^0.52.0
         version: 0.52.0
@@ -294,6 +297,29 @@ packages:
     engines: {node: '>=22.0.0'}
     peerDependencies:
       '@capacitor/core': '>=8.0.0'
+
+  '@capgo/capacitor-transitions@8.1.8':
+    resolution: {integrity: sha512-tgCVvuljFWx9+gX28AYin7j7ygufdvJNzV2uP6AbkhaF7nvAvM7GmwhewBTFlomdrpQUQ9Xu6amUDdQ7v0SGpQ==}
+    peerDependencies:
+      '@angular/core': '>=17.0.0'
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+      solid-js: '>=1.0.0'
+      svelte: '>=4.0.0'
+      vue: '>=3.0.0'
+    peerDependenciesMeta:
+      '@angular/core':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+      solid-js:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
 
   '@csstools/color-helpers@6.0.2':
     resolution: {integrity: sha512-LMGQLS9EuADloEFkcTBR3BwV/CGHV7zyDxVRtVDTwdI2Ca4it0CCVTT9wCkxSgokjE5Ho41hEPgb8OEUwoXr6Q==}
@@ -2906,16 +2932,16 @@ packages:
   nf3@0.3.17:
     resolution: {integrity: sha512-N9zEWySuJFw+gR0lhS5863YsvNeudOdqRyFvNb+jMXbeTJOdrjDqkCpDginIZfUm0LzT1t1nCRiDeqQm/8kirQ==}
 
-  nitro@3.0.260522-beta:
-    resolution: {integrity: sha512-L/z2eOWgkiQHc65kv+SEMgau505afSRF7NJlbooaaZEZscFrNSD7rXZzeVubQlgIzPbhOG8o73bk9soIiGTHRA==}
+  nitro@3.0.260603-beta:
+    resolution: {integrity: sha512-ffaSHK00a7YDlDizoEHwcxPwpQpdBRRA8k42ymTsRnfl3ipGeKgv4gnPr6DgmCNTo4tYVPK3bHBEv1gNhWpo/A==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
       '@vercel/queue': ^0.2.0
       dotenv: '*'
       giget: '*'
-      jiti: ^2.6.1
-      rollup: ^4.60.3
+      jiti: ^2.7.0
+      rollup: ^4.60.4
       vite: ^7 || ^8
       xml2js: ^0.6.2
       zephyr-agent: ^0.2.0
@@ -3988,6 +4014,12 @@ snapshots:
   '@capgo/capacitor-native-navigation@8.0.21(@capacitor/core@8.3.4)':
     dependencies:
       '@capacitor/core': 8.3.4
+
+  '@capgo/capacitor-transitions@8.1.8(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(solid-js@1.9.10)':
+    optionalDependencies:
+      react: 19.2.6
+      react-dom: 19.2.6(react@19.2.6)
+      solid-js: 1.9.10
 
   '@csstools/color-helpers@6.0.2': {}
 
@@ -6204,7 +6236,7 @@ snapshots:
 
   nf3@0.3.17: {}
 
-  nitro@3.0.260522-beta(chokidar@5.0.0)(jiti@2.7.0)(lru-cache@11.5.1)(vite@8.0.14(@types/node@24.12.4)(jiti@2.7.0)(tsx@4.20.6)(yaml@2.8.2))(xml2js@0.6.2):
+  nitro@3.0.260603-beta(chokidar@5.0.0)(jiti@2.7.0)(lru-cache@11.5.1)(vite@8.0.14(@types/node@24.12.4)(jiti@2.7.0)(tsx@4.20.6)(yaml@2.8.2))(xml2js@0.6.2):
     dependencies:
       consola: 3.4.2
       crossws: 0.4.5(srvx@0.11.16)

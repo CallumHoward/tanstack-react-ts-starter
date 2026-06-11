@@ -31,6 +31,7 @@
     "@capacitor/core": "^8.3.4",
     "@capacitor/ios": "^8.3.4",
     "@capgo/capacitor-native-navigation": "^8.0.21",
+    "@capgo/capacitor-transitions": "^8.1.8",
     "@tanstack/react-devtools": "^0.10.5",
     "@tanstack/react-router": "^1.170.10",
     "@tanstack/react-router-devtools": "^1.167.0",

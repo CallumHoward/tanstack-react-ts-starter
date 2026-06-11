@@ -4,7 +4,7 @@ import { NativeNavigation } from "@capgo/capacitor-native-navigation";
 import { useRouter } from "@tanstack/react-router";
 import { useEffect } from "react";
 
-import { withNativeTransition } from "@/lib/use-native-transition";
+import { setDirection } from "@/lib/transitions";
 
 // Native top navbar (Liquid Glass on iOS 26+) with a back button, for pushed
 // detail routes that sit outside the tabbed layout. Hides the tab bar while
@@ -27,9 +27,11 @@ export function useNativeNavbar(title: string) {
       await NativeNavigation.setNavbar({ title, backButton: { visible: true } });
 
       const listener = await NativeNavigation.addListener("navbarBack", () => {
-        // Detail's parent is always the notes list; navigate explicitly so the
-        // transition can await the new screen before animating.
-        void withNativeTransition("back", () => router.navigate({ to: "/notes" }));
+        // Pop through history so the cap-router-outlet plays the back animation
+        // and the URL stays in sync (same path the swipe gesture takes).
+        setDirection("back");
+        if (router.history.canGoBack()) router.history.back();
+        else void router.navigate({ to: "/notes" });
       });
 
       if (cancelled) void listener.remove();

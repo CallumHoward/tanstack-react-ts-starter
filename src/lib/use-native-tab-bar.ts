@@ -6,6 +6,7 @@ import { useRouter, useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
 
 import { TABS, tabIdForPath } from "@/lib/tabs";
+import { setDirection } from "@/lib/transitions";
 
 // The native setTabbar call rebuilds the whole bar from its options and treats a
 // missing `tabs` as an empty array — so every call must re-send the full set or
@@ -41,7 +42,10 @@ export function useNativeTabBar() {
 
       const listener = await NativeNavigation.addListener("tabSelect", (event) => {
         const tab = TABS.find((candidate) => candidate.id === event.id);
-        if (tab) void router.navigate({ to: tab.path });
+        if (!tab) return;
+        // Tab switches swap instantly rather than sliding like a push/pop.
+        setDirection("none");
+        void router.navigate({ to: tab.path });
       });
 
       if (cancelled) void listener.remove();
