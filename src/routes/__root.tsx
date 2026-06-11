@@ -1,12 +1,14 @@
 import { Capacitor } from "@capacitor/core";
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
+import { HeadContent, Scripts, createRootRoute, useRouterState } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import { AppShell } from "#/components/app-shell";
 import { NotFound } from "#/components/not-found";
+import { WebTabBar } from "#/components/web-tab-bar";
 import { getThemeServerFn } from "#/lib/theme";
+import { loadTransitions } from "#/lib/transitions";
 
 import appCss from "../styles.css?url";
 
@@ -49,10 +51,33 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   const theme = Route.useLoaderData();
+  const outletRef = useRef<HTMLElement>(null);
+  // Show the web fallback bar only for tabbed routes. It lives outside the
+  // cap-router-outlet because the outlet's transform would re-anchor its
+  // position:fixed; the bar is hidden on native via .is-native regardless.
+  const showTabBar = useRouterState({
+    select: (state) => state.matches.some((match) => match.routeId === "/_tabs"),
+  });
+
   // App-wide flag so CSS can drop web-only chrome (fallback bar, in-page back
   // link/title) on native, regardless of which route mounts first.
   useEffect(() => {
     if (Capacitor.isNativePlatform()) document.documentElement.classList.add("is-native");
+  }, []);
+
+  // Page transitions: cap-router-outlet animates the <cap-page> bodies and
+  // (on native iOS) drives the interactive edge swipe-back. Loaded client-only
+  // (the package isn't SSR-safe); native bars stay owned by native-navigation.
+  useEffect(() => {
+    void loadTransitions()?.then((transitions) => {
+      transitions.initTransitions({ platform: "auto" });
+      if (outletRef.current) {
+        transitions.setupRouterOutlet(outletRef.current, {
+          platform: "auto",
+          swipeGesture: "auto",
+        });
+      }
+    });
   }, []);
 
   return (
@@ -61,7 +86,12 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="flex min-h-screen flex-col items-center">
-        <AppShell theme={theme}>{children}</AppShell>
+        <AppShell theme={theme}>
+          <cap-router-outlet ref={outletRef} platform="auto" swipe-gesture="auto">
+            {children}
+          </cap-router-outlet>
+        </AppShell>
+        {showTabBar ? <WebTabBar /> : null}
         <TanStackDevtools
           config={{
             position: "bottom-right",

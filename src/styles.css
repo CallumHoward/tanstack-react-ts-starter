@@ -22,9 +22,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+/* Page-stack transition outlet fills the routed area so pages can slide. */
+cap-router-outlet {
+  position: relative;
+  display: block;
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+cap-page,
+cap-content {
+  display: block;
+}
+
 .page {
   width: 100%;
   max-width: 40rem;
+  margin-inline: auto;
   padding: 1.5rem;
 }
 

@@ -17,6 +17,9 @@ importers:
       '@capgo/capacitor-native-navigation':
         specifier: ^8.0.21
         version: 8.3.2(@capacitor/core@8.5.2)
+      '@capgo/capacitor-transitions':
+        specifier: ^8.1.8
+        version: 8.2.2(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(solid-js@1.9.10)
       '@tanstack/react-devtools':
         specifier: ^0.10.12
         version: 0.10.12(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(csstype@3.2.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(solid-js@1.9.10)
@@ -284,6 +287,29 @@ packages:
     engines: {node: '>=22.0.0'}
     peerDependencies:
       '@capacitor/core': '>=8.0.0'
+
+  '@capgo/capacitor-transitions@8.2.2':
+    resolution: {integrity: sha512-77aOmr6llalG4rTt7zAMWsC7CjRIfvquKdzM7P3G5AJXuzGf3pQC+Db++zXsIDNUcrl64s/bIyY2LOscmxPqLw==}
+    peerDependencies:
+      '@angular/core': '>=17.0.0'
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+      solid-js: '>=1.0.0'
+      svelte: '>=4.0.0'
+      vue: '>=3.0.0'
+    peerDependenciesMeta:
+      '@angular/core':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+      solid-js:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
 
   '@csstools/color-helpers@6.0.2':
     resolution: {integrity: sha512-LMGQLS9EuADloEFkcTBR3BwV/CGHV7zyDxVRtVDTwdI2Ca4it0CCVTT9wCkxSgokjE5Ho41hEPgb8OEUwoXr6Q==}
@@ -4219,6 +4245,12 @@ snapshots:
   '@capgo/capacitor-native-navigation@8.3.2(@capacitor/core@8.5.2)':
     dependencies:
       '@capacitor/core': 8.5.2
+
+  '@capgo/capacitor-transitions@8.2.2(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(solid-js@1.9.10)':
+    optionalDependencies:
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
+      solid-js: 1.9.10
 
   '@csstools/color-helpers@6.0.2': {}
 
