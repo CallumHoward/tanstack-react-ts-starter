@@ -1,10 +1,20 @@
 import { Capacitor } from "@capacitor/core";
 import type { PluginListenerHandle } from "@capacitor/core";
 import { NativeNavigation } from "@capgo/capacitor-native-navigation";
+import type { NativeNavigationTab } from "@capgo/capacitor-native-navigation";
 import { useRouter, useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
 
 import { TABS, tabIdForPath } from "@/lib/tabs";
+
+// The native setTabbar call rebuilds the whole bar from its options and treats a
+// missing `tabs` as an empty array — so every call must re-send the full set or
+// the bar disappears.
+const NATIVE_TABS: NativeNavigationTab[] = TABS.map((tab) => ({
+  id: tab.id,
+  title: tab.title,
+  icon: { ios: { sfSymbol: tab.sfSymbol }, svg: tab.svg },
+}));
 
 // Drives the native iOS/Android tab bar and bridges its taps to the router.
 // No-op on the web, where the CSS WebTabBar handles navigation instead.
@@ -26,11 +36,7 @@ export function useNativeTabBar() {
       // contentInsetMode: "css" writes --cap-native-navigation-* vars we pad with.
       await NativeNavigation.configure({ enabled: true, contentInsetMode: "css" });
       await NativeNavigation.setTabbar({
-        tabs: TABS.map((tab) => ({
-          id: tab.id,
-          title: tab.title,
-          icon: { ios: { sfSymbol: tab.sfSymbol }, svg: tab.svg },
-        })),
+        tabs: NATIVE_TABS,
         selectedId: tabIdForPath(router.state.location.pathname),
       });
 
@@ -52,8 +58,13 @@ export function useNativeTabBar() {
   }, [router]);
 
   // Keep the native selection in sync when the route changes from the web side.
+  // Re-send the full tab set (not just selectedId) so the bar is not cleared.
   useEffect(() => {
     if (!Capacitor.isNativePlatform()) return;
-    void NativeNavigation.setTabbar({ selectedId: tabIdForPath(pathname) });
+    void NativeNavigation.setTabbar({
+      tabs: NATIVE_TABS,
+      selectedId: tabIdForPath(pathname),
+      animated: false,
+    });
   }, [pathname]);
 }
