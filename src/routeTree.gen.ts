@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TabsRouteImport } from './routes/_tabs'
 import { Route as TabsIndexRouteImport } from './routes/_tabs.index'
+import { Route as NotesNoteIdRouteImport } from './routes/notes.$noteId'
 import { Route as TabsSettingsRouteImport } from './routes/_tabs.settings'
+import { Route as TabsNotesRouteImport } from './routes/_tabs.notes'
 import { Route as TabsAboutRouteImport } from './routes/_tabs.about'
 
 const TabsRoute = TabsRouteImport.update({
@@ -23,9 +25,19 @@ const TabsIndexRoute = TabsIndexRouteImport.update({
   path: '/',
   getParentRoute: () => TabsRoute,
 } as any)
+const NotesNoteIdRoute = NotesNoteIdRouteImport.update({
+  id: '/notes/$noteId',
+  path: '/notes/$noteId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TabsSettingsRoute = TabsSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => TabsRoute,
+} as any)
+const TabsNotesRoute = TabsNotesRouteImport.update({
+  id: '/notes',
+  path: '/notes',
   getParentRoute: () => TabsRoute,
 } as any)
 const TabsAboutRoute = TabsAboutRouteImport.update({
@@ -37,30 +49,44 @@ const TabsAboutRoute = TabsAboutRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof TabsIndexRoute
   '/about': typeof TabsAboutRoute
+  '/notes': typeof TabsNotesRoute
   '/settings': typeof TabsSettingsRoute
+  '/notes/$noteId': typeof NotesNoteIdRoute
 }
 export interface FileRoutesByTo {
   '/about': typeof TabsAboutRoute
+  '/notes': typeof TabsNotesRoute
   '/settings': typeof TabsSettingsRoute
+  '/notes/$noteId': typeof NotesNoteIdRoute
   '/': typeof TabsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_tabs': typeof TabsRouteWithChildren
   '/_tabs/about': typeof TabsAboutRoute
+  '/_tabs/notes': typeof TabsNotesRoute
   '/_tabs/settings': typeof TabsSettingsRoute
+  '/notes/$noteId': typeof NotesNoteIdRoute
   '/_tabs/': typeof TabsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/settings'
+  fullPaths: '/' | '/about' | '/notes' | '/settings' | '/notes/$noteId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/about' | '/settings' | '/'
-  id: '__root__' | '/_tabs' | '/_tabs/about' | '/_tabs/settings' | '/_tabs/'
+  to: '/about' | '/notes' | '/settings' | '/notes/$noteId' | '/'
+  id:
+    | '__root__'
+    | '/_tabs'
+    | '/_tabs/about'
+    | '/_tabs/notes'
+    | '/_tabs/settings'
+    | '/notes/$noteId'
+    | '/_tabs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   TabsRoute: typeof TabsRouteWithChildren
+  NotesNoteIdRoute: typeof NotesNoteIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -79,11 +105,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TabsIndexRouteImport
       parentRoute: typeof TabsRoute
     }
+    '/notes/$noteId': {
+      id: '/notes/$noteId'
+      path: '/notes/$noteId'
+      fullPath: '/notes/$noteId'
+      preLoaderRoute: typeof NotesNoteIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_tabs/settings': {
       id: '/_tabs/settings'
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof TabsSettingsRouteImport
+      parentRoute: typeof TabsRoute
+    }
+    '/_tabs/notes': {
+      id: '/_tabs/notes'
+      path: '/notes'
+      fullPath: '/notes'
+      preLoaderRoute: typeof TabsNotesRouteImport
       parentRoute: typeof TabsRoute
     }
     '/_tabs/about': {
@@ -98,12 +138,14 @@ declare module '@tanstack/react-router' {
 
 interface TabsRouteChildren {
   TabsAboutRoute: typeof TabsAboutRoute
+  TabsNotesRoute: typeof TabsNotesRoute
   TabsSettingsRoute: typeof TabsSettingsRoute
   TabsIndexRoute: typeof TabsIndexRoute
 }
 
 const TabsRouteChildren: TabsRouteChildren = {
   TabsAboutRoute: TabsAboutRoute,
+  TabsNotesRoute: TabsNotesRoute,
   TabsSettingsRoute: TabsSettingsRoute,
   TabsIndexRoute: TabsIndexRoute,
 }
@@ -112,6 +154,7 @@ const TabsRouteWithChildren = TabsRoute._addFileChildren(TabsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   TabsRoute: TabsRouteWithChildren,
+  NotesNoteIdRoute: NotesNoteIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
