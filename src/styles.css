@@ -74,6 +74,65 @@ html.is-native .web-tabbar {
   fill: currentcolor;
 }
 
+/* Notes list (iOS-Notes-style rows) */
+.notes-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.note-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0.75rem 0;
+  color: var(--foreground);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.note-row-title {
+  font-weight: 600;
+}
+
+.note-row-meta {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.note-row-date {
+  flex-shrink: 0;
+}
+
+.note-row-preview {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Note detail */
+.back-link {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.note-detail-date {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.note-detail-body {
+  margin: 0;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
 /* ========================================
    CONFIGURATION
    ======================================== */
