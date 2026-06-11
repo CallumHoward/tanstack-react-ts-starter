@@ -116,9 +116,14 @@ html.is-native .web-tabbar {
 .back-link {
   display: inline-block;
   margin-bottom: 0.5rem;
-  color: var(--primary);
+  padding: 0;
   font-size: 1rem;
+  color: var(--primary);
   text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  appearance: none;
 }
 
 .note-detail-date {
