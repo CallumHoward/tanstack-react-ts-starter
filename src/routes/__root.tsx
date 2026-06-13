@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 
 import { NotFound } from "@/components/not-found";
 import { WebTabBar } from "@/components/web-tab-bar";
-import { loadTransitions } from "@/lib/transitions";
+import { loadTransitions, smoothSwipeRelease } from "@/lib/transitions";
 
 import appCss from "../styles.css?url";
 
@@ -65,6 +65,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           platform: "auto",
           swipeGesture: "auto",
         });
+        smoothSwipeRelease(outletRef.current);
       }
     });
   }, []);
