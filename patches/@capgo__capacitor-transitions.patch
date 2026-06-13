@@ -1,7 +1,16 @@
 diff --git a/dist/chunk-B6BVMPJ3.mjs b/dist/chunk-B6BVMPJ3.mjs
-index 629e84c1b5781753befc6e91c4bddec981efb67d..851639bd3565125a957256b73a8bed410f4df4c0 100644
+index 629e84c1b5781753befc6e91c4bddec981efb67d..aca7211388f39b93deec440237d3711a6c803048 100644
 --- a/dist/chunk-B6BVMPJ3.mjs
 +++ b/dist/chunk-B6BVMPJ3.mjs
+@@ -41,7 +41,7 @@ function setOutletNavigationIntent(outlet, action, direction = getDefaultNavigat
+ var IOS_EASING = "cubic-bezier(0.32, 0.72, 0, 1)";
+ var ANDROID_EASING = "cubic-bezier(0.36, 0.66, 0.04, 1)";
+ var ANDROID_BACK_EASING = "cubic-bezier(0.47, 0, 0.745, 0.715)";
+-var IOS_DURATION = 540;
++var IOS_DURATION = 300;
+ var ANDROID_DURATION = 280;
+ var ANDROID_BACK_DURATION = 200;
+ var IOS_OFF_OPACITY = 0.8;
 @@ -1960,7 +1960,7 @@ var CapRouterOutlet = class extends HTMLElement {
      const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
      const missing = shouldCommit ? 1 - step : step;
@@ -43,9 +52,18 @@ index a12df64c0fb891c274adb03969609f39fe447b4c..3cb6680a572e5cce922fe3863d1f810c
            return;
          }
 diff --git a/dist/react/index.js b/dist/react/index.js
-index 5505c7b6d8a1a59f725513a61f0eb2d32e58be85..17bdae9325863a786efa0df0b17454a732ed8974 100644
+index 5505c7b6d8a1a59f725513a61f0eb2d32e58be85..f87a386bb972b1e56bdd9e5ff404d0d1e6b3d6df 100644
 --- a/dist/react/index.js
 +++ b/dist/react/index.js
+@@ -51,7 +51,7 @@ function setOutletNavigationIntent(outlet, action, direction = getDefaultNavigat
+ var IOS_EASING = "cubic-bezier(0.32, 0.72, 0, 1)";
+ var ANDROID_EASING = "cubic-bezier(0.36, 0.66, 0.04, 1)";
+ var ANDROID_BACK_EASING = "cubic-bezier(0.47, 0, 0.745, 0.715)";
+-var IOS_DURATION = 540;
++var IOS_DURATION = 300;
+ var ANDROID_DURATION = 280;
+ var ANDROID_BACK_DURATION = 200;
+ var IOS_OFF_OPACITY = 0.8;
 @@ -1918,7 +1918,7 @@ var CapRouterOutlet = class extends HTMLElement {
      const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
      const missing = shouldCommit ? 1 - step : step;
@@ -65,9 +83,18 @@ index 5505c7b6d8a1a59f725513a61f0eb2d32e58be85..17bdae9325863a786efa0df0b17454a7
        return;
      }
 diff --git a/dist/react/index.mjs b/dist/react/index.mjs
-index 1f74d539365581a85f98e2c73733e84d2089acae..ee831338b86a9fc8a78addd6c4aa6bd0b43cd0ca 100644
+index 1f74d539365581a85f98e2c73733e84d2089acae..f154ab91c7f6c2bf1a66698baf691d051f7d6e0a 100644
 --- a/dist/react/index.mjs
 +++ b/dist/react/index.mjs
+@@ -17,7 +17,7 @@ function setOutletNavigationIntent(outlet, action, direction = getDefaultNavigat
+ var IOS_EASING = "cubic-bezier(0.32, 0.72, 0, 1)";
+ var ANDROID_EASING = "cubic-bezier(0.36, 0.66, 0.04, 1)";
+ var ANDROID_BACK_EASING = "cubic-bezier(0.47, 0, 0.745, 0.715)";
+-var IOS_DURATION = 540;
++var IOS_DURATION = 300;
+ var ANDROID_DURATION = 280;
+ var ANDROID_BACK_DURATION = 200;
+ var IOS_OFF_OPACITY = 0.8;
 @@ -1884,7 +1884,7 @@ var CapRouterOutlet = class extends HTMLElement {
      const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
      const missing = shouldCommit ? 1 - step : step;
@@ -87,9 +114,18 @@ index 1f74d539365581a85f98e2c73733e84d2089acae..ee831338b86a9fc8a78addd6c4aa6bd0
        return;
      }
 diff --git a/dist/solid/index.js b/dist/solid/index.js
-index 5eba298fa285ec4301015c65915239992aed9aae..1aeb814cc7c7c01482ac188c20f8073552c15aab 100644
+index 5eba298fa285ec4301015c65915239992aed9aae..7538503480aa925b6454a5b61466c70e95174206 100644
 --- a/dist/solid/index.js
 +++ b/dist/solid/index.js
+@@ -51,7 +51,7 @@ function setOutletNavigationIntent(outlet, action, direction = getDefaultNavigat
+ var IOS_EASING = "cubic-bezier(0.32, 0.72, 0, 1)";
+ var ANDROID_EASING = "cubic-bezier(0.36, 0.66, 0.04, 1)";
+ var ANDROID_BACK_EASING = "cubic-bezier(0.47, 0, 0.745, 0.715)";
+-var IOS_DURATION = 540;
++var IOS_DURATION = 300;
+ var ANDROID_DURATION = 280;
+ var ANDROID_BACK_DURATION = 200;
+ var IOS_OFF_OPACITY = 0.8;
 @@ -1918,7 +1918,7 @@ var CapRouterOutlet = class extends HTMLElement {
      const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
      const missing = shouldCommit ? 1 - step : step;
@@ -109,9 +145,18 @@ index 5eba298fa285ec4301015c65915239992aed9aae..1aeb814cc7c7c01482ac188c20f80735
        return;
      }
 diff --git a/dist/solid/index.mjs b/dist/solid/index.mjs
-index c8bda8fc4fa637e20abf22af61a46fecdd8f6fee..d8a6402fc05bc371169b527964b6e4a26dc97c5c 100644
+index c8bda8fc4fa637e20abf22af61a46fecdd8f6fee..a6992088f47370db04f1b1641b65549ffe54c813 100644
 --- a/dist/solid/index.mjs
 +++ b/dist/solid/index.mjs
+@@ -17,7 +17,7 @@ function setOutletNavigationIntent(outlet, action, direction = getDefaultNavigat
+ var IOS_EASING = "cubic-bezier(0.32, 0.72, 0, 1)";
+ var ANDROID_EASING = "cubic-bezier(0.36, 0.66, 0.04, 1)";
+ var ANDROID_BACK_EASING = "cubic-bezier(0.47, 0, 0.745, 0.715)";
+-var IOS_DURATION = 540;
++var IOS_DURATION = 300;
+ var ANDROID_DURATION = 280;
+ var ANDROID_BACK_DURATION = 200;
+ var IOS_OFF_OPACITY = 0.8;
 @@ -1884,7 +1884,7 @@ var CapRouterOutlet = class extends HTMLElement {
      const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
      const missing = shouldCommit ? 1 - step : step;
@@ -131,9 +176,18 @@ index c8bda8fc4fa637e20abf22af61a46fecdd8f6fee..d8a6402fc05bc371169b527964b6e4a2
        return;
      }
 diff --git a/dist/svelte/index.js b/dist/svelte/index.js
-index 5483124fbe2a42ca133f7e5dd7e9035c3a3fb1d5..b9668bcc3f66db5aceb83bccced90758e68e01bb 100644
+index 5483124fbe2a42ca133f7e5dd7e9035c3a3fb1d5..a7d6b10060a9e8f86f128365bad59ba8651c2c8b 100644
 --- a/dist/svelte/index.js
 +++ b/dist/svelte/index.js
+@@ -52,7 +52,7 @@ function setOutletNavigationIntent(outlet, action, direction = getDefaultNavigat
+ var IOS_EASING = "cubic-bezier(0.32, 0.72, 0, 1)";
+ var ANDROID_EASING = "cubic-bezier(0.36, 0.66, 0.04, 1)";
+ var ANDROID_BACK_EASING = "cubic-bezier(0.47, 0, 0.745, 0.715)";
+-var IOS_DURATION = 540;
++var IOS_DURATION = 300;
+ var ANDROID_DURATION = 280;
+ var ANDROID_BACK_DURATION = 200;
+ var IOS_OFF_OPACITY = 0.8;
 @@ -1919,7 +1919,7 @@ var CapRouterOutlet = class extends HTMLElement {
      const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
      const missing = shouldCommit ? 1 - step : step;
@@ -153,9 +207,18 @@ index 5483124fbe2a42ca133f7e5dd7e9035c3a3fb1d5..b9668bcc3f66db5aceb83bccced90758
        return;
      }
 diff --git a/dist/svelte/index.mjs b/dist/svelte/index.mjs
-index 9ce0ca24c9481c608c6a52e7fc4dcebdb41ae0af..7c62e447894b2b40c23194b45f8bb9bf8adb9734 100644
+index 9ce0ca24c9481c608c6a52e7fc4dcebdb41ae0af..678f0174aa68632c08bcac5ec1236994ddfa57ca 100644
 --- a/dist/svelte/index.mjs
 +++ b/dist/svelte/index.mjs
+@@ -17,7 +17,7 @@ function setOutletNavigationIntent(outlet, action, direction = getDefaultNavigat
+ var IOS_EASING = "cubic-bezier(0.32, 0.72, 0, 1)";
+ var ANDROID_EASING = "cubic-bezier(0.36, 0.66, 0.04, 1)";
+ var ANDROID_BACK_EASING = "cubic-bezier(0.47, 0, 0.745, 0.715)";
+-var IOS_DURATION = 540;
++var IOS_DURATION = 300;
+ var ANDROID_DURATION = 280;
+ var ANDROID_BACK_DURATION = 200;
+ var IOS_OFF_OPACITY = 0.8;
 @@ -1884,7 +1884,7 @@ var CapRouterOutlet = class extends HTMLElement {
      const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
      const missing = shouldCommit ? 1 - step : step;
@@ -175,9 +238,18 @@ index 9ce0ca24c9481c608c6a52e7fc4dcebdb41ae0af..7c62e447894b2b40c23194b45f8bb9bf
        return;
      }
 diff --git a/dist/vue/index.js b/dist/vue/index.js
-index 34197b4a3e9c6f8b8a16dfc46f2efb86ddbf143a..f60f3c2ef1a4bfb344ed394fcbd2bcca844748b3 100644
+index 34197b4a3e9c6f8b8a16dfc46f2efb86ddbf143a..9635cf484654ba51778babc8722f4f9e49c505be 100644
 --- a/dist/vue/index.js
 +++ b/dist/vue/index.js
+@@ -51,7 +51,7 @@ function setOutletNavigationIntent(outlet, action, direction = getDefaultNavigat
+ var IOS_EASING = "cubic-bezier(0.32, 0.72, 0, 1)";
+ var ANDROID_EASING = "cubic-bezier(0.36, 0.66, 0.04, 1)";
+ var ANDROID_BACK_EASING = "cubic-bezier(0.47, 0, 0.745, 0.715)";
+-var IOS_DURATION = 540;
++var IOS_DURATION = 300;
+ var ANDROID_DURATION = 280;
+ var ANDROID_BACK_DURATION = 200;
+ var IOS_OFF_OPACITY = 0.8;
 @@ -1918,7 +1918,7 @@ var CapRouterOutlet = class extends HTMLElement {
      const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
      const missing = shouldCommit ? 1 - step : step;
@@ -197,9 +269,18 @@ index 34197b4a3e9c6f8b8a16dfc46f2efb86ddbf143a..f60f3c2ef1a4bfb344ed394fcbd2bcca
        return;
      }
 diff --git a/dist/vue/index.mjs b/dist/vue/index.mjs
-index deac09dac108ed3f719379a32f54d6d6db03f971..404066ff6fdc584778bdcb5ad1163bc0ba24179c 100644
+index deac09dac108ed3f719379a32f54d6d6db03f971..c9b23b5e87f4802363a882a01f43fa9407e7d3bb 100644
 --- a/dist/vue/index.mjs
 +++ b/dist/vue/index.mjs
+@@ -17,7 +17,7 @@ function setOutletNavigationIntent(outlet, action, direction = getDefaultNavigat
+ var IOS_EASING = "cubic-bezier(0.32, 0.72, 0, 1)";
+ var ANDROID_EASING = "cubic-bezier(0.36, 0.66, 0.04, 1)";
+ var ANDROID_BACK_EASING = "cubic-bezier(0.47, 0, 0.745, 0.715)";
+-var IOS_DURATION = 540;
++var IOS_DURATION = 300;
+ var ANDROID_DURATION = 280;
+ var ANDROID_BACK_DURATION = 200;
+ var IOS_OFF_OPACITY = 0.8;
 @@ -1884,7 +1884,7 @@ var CapRouterOutlet = class extends HTMLElement {
      const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
      const missing = shouldCommit ? 1 - step : step;
