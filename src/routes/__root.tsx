@@ -59,14 +59,15 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   // (the package isn't SSR-safe); native bars stay owned by native-navigation.
   useEffect(() => {
     void loadTransitions()?.then((transitions) => {
-      // 350ms ~ the native iOS push/pop; the library's 540 default feels floaty.
-      // (Its easing is already cubic-bezier(0.32,0.72,0,1) — the iOS curve.)
-      transitions.initTransitions({ platform: "auto", duration: 350 });
+      // ~native iOS push/pop duration (the library's 540 default feels floaty).
+      // The interactive swipe settle is tuned separately in the patch
+      // (proportional-to-remaining duration + ease-out, matching UIKit).
+      transitions.initTransitions({ platform: "auto", duration: 330 });
       if (outletRef.current) {
         transitions.setupRouterOutlet(outletRef.current, {
           platform: "auto",
           swipeGesture: "auto",
-          duration: 350,
+          duration: 330,
         });
       }
     });

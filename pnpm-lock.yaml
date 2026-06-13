@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
-  '@capgo/capacitor-transitions': 6654170b6cecf9b1602dce1ef8f2ee825f3bdf8ec02170060a9014a10ea3dffa
+  '@capgo/capacitor-transitions': e09a3146f6739f2f0966ae83cdfd70c1d370348ed6a45b05b37de956bf6d3aa7
 
 importers:
 
@@ -22,7 +22,7 @@ importers:
         version: 8.0.21(@capacitor/core@8.3.4)
       '@capgo/capacitor-transitions':
         specifier: ^8.1.8
-        version: 8.1.8(patch_hash=6654170b6cecf9b1602dce1ef8f2ee825f3bdf8ec02170060a9014a10ea3dffa)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(solid-js@1.9.10)
+        version: 8.1.8(patch_hash=e09a3146f6739f2f0966ae83cdfd70c1d370348ed6a45b05b37de956bf6d3aa7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(solid-js@1.9.10)
       '@tanstack/react-devtools':
         specifier: ^0.10.5
         version: 0.10.5(@types/react-dom@19.2.3(@types/react@19.2.15))(@types/react@19.2.15)(csstype@3.2.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(solid-js@1.9.10)
@@ -4018,7 +4018,7 @@ snapshots:
     dependencies:
       '@capacitor/core': 8.3.4
 
-  '@capgo/capacitor-transitions@8.1.8(patch_hash=6654170b6cecf9b1602dce1ef8f2ee825f3bdf8ec02170060a9014a10ea3dffa)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(solid-js@1.9.10)':
+  '@capgo/capacitor-transitions@8.1.8(patch_hash=e09a3146f6739f2f0966ae83cdfd70c1d370348ed6a45b05b37de956bf6d3aa7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(solid-js@1.9.10)':
     optionalDependencies:
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
