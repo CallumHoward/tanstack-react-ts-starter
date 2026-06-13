@@ -1,130 +1,220 @@
 diff --git a/dist/chunk-B6BVMPJ3.mjs b/dist/chunk-B6BVMPJ3.mjs
-index 629e84c1b5781753befc6e91c4bddec981efb67d..5ae5c1b5b36f578ff047d63f81293de33e05de69 100644
+index 629e84c1b5781753befc6e91c4bddec981efb67d..851639bd3565125a957256b73a8bed410f4df4c0 100644
 --- a/dist/chunk-B6BVMPJ3.mjs
 +++ b/dist/chunk-B6BVMPJ3.mjs
+@@ -1960,7 +1960,7 @@ var CapRouterOutlet = class extends HTMLElement {
+     const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
+     const missing = shouldCommit ? 1 - step : step;
+     const missingDistance = Math.max(missing, 0) * width;
+-    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 540) : 0;
++    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 350) : 0;
+     if (pointer.transitionStarted) {
+       this.flushQueuedSwipeGestureStep();
+     } else {
 @@ -2033,7 +2033,7 @@ var CapRouterOutlet = class extends HTMLElement {
    async finishSwipeGestureBack(shouldComplete, releaseDuration) {
      const canComplete = shouldComplete && this.getSwipeBackDestination() !== null;
      const shouldUseHistory = canComplete && typeof window !== "undefined" && window.history.length > 1;
 -    await this.controller.endInteractiveBack(canComplete, canComplete ? releaseDuration : 0, !shouldUseHistory);
-+    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 220), !shouldUseHistory);
++    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 160), !shouldUseHistory);
      if (!canComplete) {
        return;
      }
 diff --git a/dist/index.js b/dist/index.js
-index a12df64c0fb891c274adb03969609f39fe447b4c..cbcf7e81986a8cd1c6944cd4815f07f00f937fac 100644
+index a12df64c0fb891c274adb03969609f39fe447b4c..3cb6680a572e5cce922fe3863d1f810cae7d41f5 100644
 --- a/dist/index.js
 +++ b/dist/index.js
+@@ -2019,7 +2019,7 @@ var init_cap_router_outlet = __esm({
+         const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
+         const missing = shouldCommit ? 1 - step : step;
+         const missingDistance = Math.max(missing, 0) * width;
+-        const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 540) : 0;
++        const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 350) : 0;
+         if (pointer.transitionStarted) {
+           this.flushQueuedSwipeGestureStep();
+         } else {
 @@ -2092,7 +2092,7 @@ var init_cap_router_outlet = __esm({
        async finishSwipeGestureBack(shouldComplete, releaseDuration) {
          const canComplete = shouldComplete && this.getSwipeBackDestination() !== null;
          const shouldUseHistory = canComplete && typeof window !== "undefined" && window.history.length > 1;
 -        await this.controller.endInteractiveBack(canComplete, canComplete ? releaseDuration : 0, !shouldUseHistory);
-+        await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 220), !shouldUseHistory);
++        await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 160), !shouldUseHistory);
          if (!canComplete) {
            return;
          }
 diff --git a/dist/react/index.js b/dist/react/index.js
-index 5505c7b6d8a1a59f725513a61f0eb2d32e58be85..db4e0ac37017990928abece4049f95ceccc1c3a8 100644
+index 5505c7b6d8a1a59f725513a61f0eb2d32e58be85..17bdae9325863a786efa0df0b17454a732ed8974 100644
 --- a/dist/react/index.js
 +++ b/dist/react/index.js
+@@ -1918,7 +1918,7 @@ var CapRouterOutlet = class extends HTMLElement {
+     const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
+     const missing = shouldCommit ? 1 - step : step;
+     const missingDistance = Math.max(missing, 0) * width;
+-    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 540) : 0;
++    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 350) : 0;
+     if (pointer.transitionStarted) {
+       this.flushQueuedSwipeGestureStep();
+     } else {
 @@ -1991,7 +1991,7 @@ var CapRouterOutlet = class extends HTMLElement {
    async finishSwipeGestureBack(shouldComplete, releaseDuration) {
      const canComplete = shouldComplete && this.getSwipeBackDestination() !== null;
      const shouldUseHistory = canComplete && typeof window !== "undefined" && window.history.length > 1;
 -    await this.controller.endInteractiveBack(canComplete, canComplete ? releaseDuration : 0, !shouldUseHistory);
-+    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 220), !shouldUseHistory);
++    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 160), !shouldUseHistory);
      if (!canComplete) {
        return;
      }
 diff --git a/dist/react/index.mjs b/dist/react/index.mjs
-index 1f74d539365581a85f98e2c73733e84d2089acae..40bacb0316b54576d17a4beeeb1738c3b24f1955 100644
+index 1f74d539365581a85f98e2c73733e84d2089acae..ee831338b86a9fc8a78addd6c4aa6bd0b43cd0ca 100644
 --- a/dist/react/index.mjs
 +++ b/dist/react/index.mjs
+@@ -1884,7 +1884,7 @@ var CapRouterOutlet = class extends HTMLElement {
+     const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
+     const missing = shouldCommit ? 1 - step : step;
+     const missingDistance = Math.max(missing, 0) * width;
+-    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 540) : 0;
++    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 350) : 0;
+     if (pointer.transitionStarted) {
+       this.flushQueuedSwipeGestureStep();
+     } else {
 @@ -1957,7 +1957,7 @@ var CapRouterOutlet = class extends HTMLElement {
    async finishSwipeGestureBack(shouldComplete, releaseDuration) {
      const canComplete = shouldComplete && this.getSwipeBackDestination() !== null;
      const shouldUseHistory = canComplete && typeof window !== "undefined" && window.history.length > 1;
 -    await this.controller.endInteractiveBack(canComplete, canComplete ? releaseDuration : 0, !shouldUseHistory);
-+    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 220), !shouldUseHistory);
++    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 160), !shouldUseHistory);
      if (!canComplete) {
        return;
      }
 diff --git a/dist/solid/index.js b/dist/solid/index.js
-index 5eba298fa285ec4301015c65915239992aed9aae..c7cde804ac8686d26ba32a5ddf13434b6b564e18 100644
+index 5eba298fa285ec4301015c65915239992aed9aae..1aeb814cc7c7c01482ac188c20f8073552c15aab 100644
 --- a/dist/solid/index.js
 +++ b/dist/solid/index.js
+@@ -1918,7 +1918,7 @@ var CapRouterOutlet = class extends HTMLElement {
+     const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
+     const missing = shouldCommit ? 1 - step : step;
+     const missingDistance = Math.max(missing, 0) * width;
+-    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 540) : 0;
++    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 350) : 0;
+     if (pointer.transitionStarted) {
+       this.flushQueuedSwipeGestureStep();
+     } else {
 @@ -1991,7 +1991,7 @@ var CapRouterOutlet = class extends HTMLElement {
    async finishSwipeGestureBack(shouldComplete, releaseDuration) {
      const canComplete = shouldComplete && this.getSwipeBackDestination() !== null;
      const shouldUseHistory = canComplete && typeof window !== "undefined" && window.history.length > 1;
 -    await this.controller.endInteractiveBack(canComplete, canComplete ? releaseDuration : 0, !shouldUseHistory);
-+    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 220), !shouldUseHistory);
++    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 160), !shouldUseHistory);
      if (!canComplete) {
        return;
      }
 diff --git a/dist/solid/index.mjs b/dist/solid/index.mjs
-index c8bda8fc4fa637e20abf22af61a46fecdd8f6fee..b9eec4edf0bc595ecdbc810e4d93bbfac7b114f6 100644
+index c8bda8fc4fa637e20abf22af61a46fecdd8f6fee..d8a6402fc05bc371169b527964b6e4a26dc97c5c 100644
 --- a/dist/solid/index.mjs
 +++ b/dist/solid/index.mjs
+@@ -1884,7 +1884,7 @@ var CapRouterOutlet = class extends HTMLElement {
+     const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
+     const missing = shouldCommit ? 1 - step : step;
+     const missingDistance = Math.max(missing, 0) * width;
+-    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 540) : 0;
++    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 350) : 0;
+     if (pointer.transitionStarted) {
+       this.flushQueuedSwipeGestureStep();
+     } else {
 @@ -1957,7 +1957,7 @@ var CapRouterOutlet = class extends HTMLElement {
    async finishSwipeGestureBack(shouldComplete, releaseDuration) {
      const canComplete = shouldComplete && this.getSwipeBackDestination() !== null;
      const shouldUseHistory = canComplete && typeof window !== "undefined" && window.history.length > 1;
 -    await this.controller.endInteractiveBack(canComplete, canComplete ? releaseDuration : 0, !shouldUseHistory);
-+    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 220), !shouldUseHistory);
++    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 160), !shouldUseHistory);
      if (!canComplete) {
        return;
      }
 diff --git a/dist/svelte/index.js b/dist/svelte/index.js
-index 5483124fbe2a42ca133f7e5dd7e9035c3a3fb1d5..4d5cef16439a8c8b5ea7e172b3ac6a2e4f37896c 100644
+index 5483124fbe2a42ca133f7e5dd7e9035c3a3fb1d5..b9668bcc3f66db5aceb83bccced90758e68e01bb 100644
 --- a/dist/svelte/index.js
 +++ b/dist/svelte/index.js
+@@ -1919,7 +1919,7 @@ var CapRouterOutlet = class extends HTMLElement {
+     const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
+     const missing = shouldCommit ? 1 - step : step;
+     const missingDistance = Math.max(missing, 0) * width;
+-    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 540) : 0;
++    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 350) : 0;
+     if (pointer.transitionStarted) {
+       this.flushQueuedSwipeGestureStep();
+     } else {
 @@ -1992,7 +1992,7 @@ var CapRouterOutlet = class extends HTMLElement {
    async finishSwipeGestureBack(shouldComplete, releaseDuration) {
      const canComplete = shouldComplete && this.getSwipeBackDestination() !== null;
      const shouldUseHistory = canComplete && typeof window !== "undefined" && window.history.length > 1;
 -    await this.controller.endInteractiveBack(canComplete, canComplete ? releaseDuration : 0, !shouldUseHistory);
-+    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 220), !shouldUseHistory);
++    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 160), !shouldUseHistory);
      if (!canComplete) {
        return;
      }
 diff --git a/dist/svelte/index.mjs b/dist/svelte/index.mjs
-index 9ce0ca24c9481c608c6a52e7fc4dcebdb41ae0af..3b9daf145d8bba1c4a0ad1006df57fda0994a8ba 100644
+index 9ce0ca24c9481c608c6a52e7fc4dcebdb41ae0af..7c62e447894b2b40c23194b45f8bb9bf8adb9734 100644
 --- a/dist/svelte/index.mjs
 +++ b/dist/svelte/index.mjs
+@@ -1884,7 +1884,7 @@ var CapRouterOutlet = class extends HTMLElement {
+     const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
+     const missing = shouldCommit ? 1 - step : step;
+     const missingDistance = Math.max(missing, 0) * width;
+-    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 540) : 0;
++    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 350) : 0;
+     if (pointer.transitionStarted) {
+       this.flushQueuedSwipeGestureStep();
+     } else {
 @@ -1957,7 +1957,7 @@ var CapRouterOutlet = class extends HTMLElement {
    async finishSwipeGestureBack(shouldComplete, releaseDuration) {
      const canComplete = shouldComplete && this.getSwipeBackDestination() !== null;
      const shouldUseHistory = canComplete && typeof window !== "undefined" && window.history.length > 1;
 -    await this.controller.endInteractiveBack(canComplete, canComplete ? releaseDuration : 0, !shouldUseHistory);
-+    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 220), !shouldUseHistory);
++    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 160), !shouldUseHistory);
      if (!canComplete) {
        return;
      }
 diff --git a/dist/vue/index.js b/dist/vue/index.js
-index 34197b4a3e9c6f8b8a16dfc46f2efb86ddbf143a..ba0d5a176ffe56fb36480a2206dd811c00e2bd6c 100644
+index 34197b4a3e9c6f8b8a16dfc46f2efb86ddbf143a..f60f3c2ef1a4bfb344ed394fcbd2bcca844748b3 100644
 --- a/dist/vue/index.js
 +++ b/dist/vue/index.js
+@@ -1918,7 +1918,7 @@ var CapRouterOutlet = class extends HTMLElement {
+     const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
+     const missing = shouldCommit ? 1 - step : step;
+     const missingDistance = Math.max(missing, 0) * width;
+-    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 540) : 0;
++    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 350) : 0;
+     if (pointer.transitionStarted) {
+       this.flushQueuedSwipeGestureStep();
+     } else {
 @@ -1991,7 +1991,7 @@ var CapRouterOutlet = class extends HTMLElement {
    async finishSwipeGestureBack(shouldComplete, releaseDuration) {
      const canComplete = shouldComplete && this.getSwipeBackDestination() !== null;
      const shouldUseHistory = canComplete && typeof window !== "undefined" && window.history.length > 1;
 -    await this.controller.endInteractiveBack(canComplete, canComplete ? releaseDuration : 0, !shouldUseHistory);
-+    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 220), !shouldUseHistory);
++    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 160), !shouldUseHistory);
      if (!canComplete) {
        return;
      }
 diff --git a/dist/vue/index.mjs b/dist/vue/index.mjs
-index deac09dac108ed3f719379a32f54d6d6db03f971..a32a189d91aff63128c18359c6746068f42b1d78 100644
+index deac09dac108ed3f719379a32f54d6d6db03f971..404066ff6fdc584778bdcb5ad1163bc0ba24179c 100644
 --- a/dist/vue/index.mjs
 +++ b/dist/vue/index.mjs
+@@ -1884,7 +1884,7 @@ var CapRouterOutlet = class extends HTMLElement {
+     const shouldCommit = pointer.dragging && pointer.transitionStarted && velocityX >= 0 && (velocityX > this.swipeGestureMinimumVelocity || deltaX > width / 2);
+     const missing = shouldCommit ? 1 - step : step;
+     const missingDistance = Math.max(missing, 0) * width;
+-    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 540) : 0;
++    const releaseDuration = missingDistance > 5 && Math.abs(velocityX) > 0 ? Math.min(missingDistance / Math.abs(velocityX), 350) : 0;
+     if (pointer.transitionStarted) {
+       this.flushQueuedSwipeGestureStep();
+     } else {
 @@ -1957,7 +1957,7 @@ var CapRouterOutlet = class extends HTMLElement {
    async finishSwipeGestureBack(shouldComplete, releaseDuration) {
      const canComplete = shouldComplete && this.getSwipeBackDestination() !== null;
      const shouldUseHistory = canComplete && typeof window !== "undefined" && window.history.length > 1;
 -    await this.controller.endInteractiveBack(canComplete, canComplete ? releaseDuration : 0, !shouldUseHistory);
-+    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 220), !shouldUseHistory);
++    await this.controller.endInteractiveBack(canComplete, Math.max(releaseDuration, 160), !shouldUseHistory);
      if (!canComplete) {
        return;
      }
