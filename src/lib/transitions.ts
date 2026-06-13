@@ -32,23 +32,3 @@ export function loadTransitions(): Promise<TransitionsApi> | undefined {
 export function setDirection(direction: TransitionDirection): void {
   api?.setDirection(direction);
 }
-
-// The built-in swipe-back derives its release duration from finger velocity, so
-// releasing with ~0 velocity snaps instantly (duration 0). iOS always eases the
-// settle. Floor the outlet's (internal) finishSwipeGestureBack release duration
-// so both cancel and complete glide. Best-effort: a no-op if the method is
-// renamed upstream — the gesture still works, just without the smoothing.
-const MIN_SWIPE_RELEASE_MS = 220;
-
-type SwipeOutlet = HTMLElement & {
-  finishSwipeGestureBack?: (shouldComplete: boolean, releaseDuration: number) => Promise<void>;
-};
-
-export function smoothSwipeRelease(element: HTMLElement): void {
-  const outlet = element as SwipeOutlet;
-  const original = outlet.finishSwipeGestureBack;
-  if (typeof original !== "function") return;
-  const bound = original.bind(outlet);
-  outlet.finishSwipeGestureBack = (shouldComplete, releaseDuration) =>
-    bound(shouldComplete, Math.max(releaseDuration, MIN_SWIPE_RELEASE_MS));
-}
