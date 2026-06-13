@@ -8,6 +8,8 @@ const config: Config = {
   reportNeedlessDisables: true,
   rules: {
     "declaration-no-important": true,
+    "max-nesting-depth": [2, { ignoreAtRules: ["media", "supports", "layer"] }],
+    "no-unknown-animations": true,
     "selector-max-id": 0,
     "at-rule-no-unknown": [
       true,
