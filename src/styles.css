@@ -153,10 +153,10 @@ html.is-native .web-tabbar {
   white-space: pre-wrap;
 }
 
-/* On native the navbar supplies the title and back button, so drop their
-   in-page web equivalents to avoid duplication. */
+/* On native the navbar supplies each page's title and the back button, so drop
+   their in-page web equivalents to avoid duplication. */
 html.is-native .back-link,
-html.is-native .note-detail h1 {
+html.is-native .page h1 {
   display: none;
 }
 
