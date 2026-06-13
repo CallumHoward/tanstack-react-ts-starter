@@ -8,7 +8,7 @@ import { AppShell } from "#/components/app-shell";
 import { NotFound } from "#/components/not-found";
 import { WebTabBar } from "#/components/web-tab-bar";
 import { getThemeServerFn } from "#/lib/theme";
-import { loadTransitions } from "#/lib/transitions";
+import { loadTransitions, smoothSwipeRelease } from "#/lib/transitions";
 
 import appCss from "../styles.css?url";
 
@@ -76,6 +76,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           platform: "auto",
           swipeGesture: "auto",
         });
+        smoothSwipeRelease(outletRef.current);
       }
     });
   }, []);
