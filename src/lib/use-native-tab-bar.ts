@@ -1,10 +1,10 @@
 import { Capacitor } from "@capacitor/core";
-import type { PluginListenerHandle } from "@capacitor/core";
 import { NativeNavigation } from "@capgo/capacitor-native-navigation";
 import type { NativeNavigationTab } from "@capgo/capacitor-native-navigation";
 import { useRouter, useRouterState } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
+import { useNativeChrome } from "@/lib/native-chrome";
 import { TABS, tabIdForPath } from "@/lib/tabs";
 import { setDirection } from "@/lib/transitions";
 
@@ -24,50 +24,36 @@ export function useNativeTabBar() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
 
   // Set up the native bar once and translate native tab taps into navigations.
-  useEffect(() => {
-    if (!Capacitor.isNativePlatform()) return;
+  const register = useCallback(async () => {
+    // contentInsetMode: "css" writes --cap-native-navigation-* vars we pad with.
+    await NativeNavigation.configure({ enabled: true, contentInsetMode: "css" });
+    await NativeNavigation.setTabbar({
+      tabs: NATIVE_TABS,
+      selectedId: tabIdForPath(router.state.location.pathname),
+    });
 
-    let handle: PluginListenerHandle | undefined;
-    let cancelled = false;
-
-    const setup = async () => {
-      // contentInsetMode: "css" writes --cap-native-navigation-* vars we pad with.
-      await NativeNavigation.configure({ enabled: true, contentInsetMode: "css" });
-      // Tabbed routes have no top navbar (detail routes own that).
-      await NativeNavigation.setNavbar({ hidden: true });
-      await NativeNavigation.setTabbar({
-        tabs: NATIVE_TABS,
-        selectedId: tabIdForPath(router.state.location.pathname),
-      });
-
-      const listener = await NativeNavigation.addListener("tabSelect", (event) => {
-        const tab = TABS.find((candidate) => candidate.id === event.id);
-        if (!tab) return;
-        // Tab switches swap instantly rather than sliding like a push/pop.
-        setDirection("none");
-        void router.navigate({ to: tab.path });
-      });
-
-      if (cancelled) void listener.remove();
-      else handle = listener;
-    };
-
-    void setup();
-
-    return () => {
-      cancelled = true;
-      void handle?.remove();
-    };
+    return NativeNavigation.addListener("tabSelect", (event) => {
+      const tab = TABS.find((candidate) => candidate.id === event.id);
+      if (!tab) return;
+      // Tab switches swap instantly rather than sliding like a push/pop.
+      setDirection("none");
+      void router.navigate({ to: tab.path });
+    });
   }, [router]);
 
-  // Keep the native selection in sync when the route changes from the web side.
-  // Re-send the full tab set (not just selectedId) so the bar is not cleared.
+  useNativeChrome(register);
+
+  // Keep the native tab selection + navbar title in sync with the route.
+  // The navbar stays visible (titled, no buttons) across tabbed routes so its
+  // height matches the detail navbar — no layout shift navigating in/out.
   useEffect(() => {
     if (!Capacitor.isNativePlatform()) return;
-    void NativeNavigation.setTabbar({
-      tabs: NATIVE_TABS,
-      selectedId: tabIdForPath(pathname),
-      animated: false,
+    const tabId = tabIdForPath(pathname);
+    void NativeNavigation.setTabbar({ tabs: NATIVE_TABS, selectedId: tabId, animated: false });
+    void NativeNavigation.setNavbar({
+      title: TABS.find((tab) => tab.id === tabId)?.title ?? "",
+      backButton: { visible: false },
+      leftItems: [],
     });
   }, [pathname]);
 }
