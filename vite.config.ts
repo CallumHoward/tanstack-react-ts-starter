@@ -9,15 +9,24 @@ import { nitro } from "nitro/vite";
 import { visualizer } from "rollup-plugin-visualizer";
 import { configDefaults, defineConfig } from "vitest/config";
 
+// The mobile (Capacitor) build sets MOBILE_BUILD=true to emit a prerendered
+// static shell + client bundle (no SSR server at runtime) for the WebView.
+// The default web build keeps SSR.
+const isMobileBuild = process.env.MOBILE_BUILD === "true";
+
+const developmentPlugins = [
+  devtools(),
+  nitro(),
+  tanstackStart(isMobileBuild ? { spa: { enabled: true } } : undefined),
+];
+
+// ANALYZE=true adds the bundle visualizer.
+const analyzePlugins =
+  process.env.ANALYZE === "true"
+    ? [visualizer({ filename: "./stats.html", open: true, gzipSize: true, brotliSize: true })]
+    : [];
+
 export default defineConfig(({ mode }) => {
-  const developmentPlugins = [devtools(), nitro(), tanstackStart()];
-  const analyzer = visualizer({
-    filename: "./stats.html",
-    open: true,
-    gzipSize: true,
-    brotliSize: true,
-  });
-  const analyzePlugins = process.env.ANALYZE === "true" ? [analyzer] : [];
   const modePlugins = mode === "test" ? [] : developmentPlugins;
 
   return {

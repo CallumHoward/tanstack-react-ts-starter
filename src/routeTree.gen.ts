@@ -9,50 +9,152 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as TabsRouteImport } from './routes/_tabs'
+import { Route as TabsIndexRouteImport } from './routes/_tabs.index'
+import { Route as NotesNoteIdRouteImport } from './routes/notes.$noteId'
+import { Route as TabsSettingsRouteImport } from './routes/_tabs.settings'
+import { Route as TabsNotesRouteImport } from './routes/_tabs.notes'
+import { Route as TabsAboutRouteImport } from './routes/_tabs.about'
 
-const IndexRoute = IndexRouteImport.update({
+const TabsRoute = TabsRouteImport.update({
+  id: '/_tabs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TabsIndexRoute = TabsIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => TabsRoute,
+} as any)
+const NotesNoteIdRoute = NotesNoteIdRouteImport.update({
+  id: '/notes/$noteId',
+  path: '/notes/$noteId',
   getParentRoute: () => rootRouteImport,
+} as any)
+const TabsSettingsRoute = TabsSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => TabsRoute,
+} as any)
+const TabsNotesRoute = TabsNotesRouteImport.update({
+  id: '/notes',
+  path: '/notes',
+  getParentRoute: () => TabsRoute,
+} as any)
+const TabsAboutRoute = TabsAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => TabsRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof TabsIndexRoute
+  '/about': typeof TabsAboutRoute
+  '/notes': typeof TabsNotesRoute
+  '/settings': typeof TabsSettingsRoute
+  '/notes/$noteId': typeof NotesNoteIdRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/about': typeof TabsAboutRoute
+  '/notes': typeof TabsNotesRoute
+  '/settings': typeof TabsSettingsRoute
+  '/notes/$noteId': typeof NotesNoteIdRoute
+  '/': typeof TabsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_tabs': typeof TabsRouteWithChildren
+  '/_tabs/about': typeof TabsAboutRoute
+  '/_tabs/notes': typeof TabsNotesRoute
+  '/_tabs/settings': typeof TabsSettingsRoute
+  '/notes/$noteId': typeof NotesNoteIdRoute
+  '/_tabs/': typeof TabsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/about' | '/notes' | '/settings' | '/notes/$noteId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/about' | '/notes' | '/settings' | '/notes/$noteId' | '/'
+  id:
+    | '__root__'
+    | '/_tabs'
+    | '/_tabs/about'
+    | '/_tabs/notes'
+    | '/_tabs/settings'
+    | '/notes/$noteId'
+    | '/_tabs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  TabsRoute: typeof TabsRouteWithChildren
+  NotesNoteIdRoute: typeof NotesNoteIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/_tabs': {
+      id: '/_tabs'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof TabsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_tabs/': {
+      id: '/_tabs/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof TabsIndexRouteImport
+      parentRoute: typeof TabsRoute
+    }
+    '/notes/$noteId': {
+      id: '/notes/$noteId'
+      path: '/notes/$noteId'
+      fullPath: '/notes/$noteId'
+      preLoaderRoute: typeof NotesNoteIdRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_tabs/settings': {
+      id: '/_tabs/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof TabsSettingsRouteImport
+      parentRoute: typeof TabsRoute
+    }
+    '/_tabs/notes': {
+      id: '/_tabs/notes'
+      path: '/notes'
+      fullPath: '/notes'
+      preLoaderRoute: typeof TabsNotesRouteImport
+      parentRoute: typeof TabsRoute
+    }
+    '/_tabs/about': {
+      id: '/_tabs/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof TabsAboutRouteImport
+      parentRoute: typeof TabsRoute
     }
   }
 }
 
+interface TabsRouteChildren {
+  TabsAboutRoute: typeof TabsAboutRoute
+  TabsNotesRoute: typeof TabsNotesRoute
+  TabsSettingsRoute: typeof TabsSettingsRoute
+  TabsIndexRoute: typeof TabsIndexRoute
+}
+
+const TabsRouteChildren: TabsRouteChildren = {
+  TabsAboutRoute: TabsAboutRoute,
+  TabsNotesRoute: TabsNotesRoute,
+  TabsSettingsRoute: TabsSettingsRoute,
+  TabsIndexRoute: TabsIndexRoute,
+}
+
+const TabsRouteWithChildren = TabsRoute._addFileChildren(TabsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  TabsRoute: TabsRouteWithChildren,
+  NotesNoteIdRoute: NotesNoteIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
