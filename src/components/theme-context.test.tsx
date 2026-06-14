@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-import { useTheme } from "#/components/theme-provider";
+import { useTheme } from "#/components/theme-context";
 
 function Consumer() {
   useTheme();

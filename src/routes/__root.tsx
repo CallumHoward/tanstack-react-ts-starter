@@ -2,9 +2,8 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
+import { AppShell } from "@/components/app-shell";
 import { NotFound } from "@/components/not-found";
-import { ThemeProvider } from "@/components/theme-provider";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { getThemeServerFn } from "@/lib/theme";
 
 import appCss from "../styles.css?url";
@@ -53,12 +52,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="flex min-h-screen flex-col items-center">
-        <ThemeProvider initialTheme={theme}>
-          <header className="flex w-full justify-end p-4">
-            <ThemeToggle />
-          </header>
-          {children}
-        </ThemeProvider>
+        <AppShell theme={theme}>{children}</AppShell>
         <TanStackDevtools
           config={{
             position: "bottom-right",

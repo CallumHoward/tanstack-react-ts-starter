@@ -1,4 +1,4 @@
-import { useTheme } from "@/components/theme-provider";
+import { useTheme } from "@/components/theme-context";
 import { THEMES, type Theme } from "@/lib/theme";
 
 const LABELS: Record<Theme, string> = {
