@@ -30,40 +30,89 @@ code {
   --z-pages: 2;
   --z-home: 1;
   --radius: 0.625rem;
-  --background: oklch(100% 0 0deg);
-  --foreground: oklch(12.9% 0.042 264.695deg);
-  --card: oklch(100% 0 0deg);
-  --card-foreground: oklch(12.9% 0.042 264.695deg);
-  --popover: oklch(100% 0 0deg);
-  --popover-foreground: oklch(12.9% 0.042 264.695deg);
-  --primary: oklch(20.8% 0.042 265.755deg);
-  --primary-foreground: oklch(98.4% 0.003 247.858deg);
-  --secondary: oklch(96.8% 0.007 247.896deg);
-  --secondary-foreground: oklch(20.8% 0.042 265.755deg);
-  --muted: oklch(96.8% 0.007 247.896deg);
-  --muted-foreground: oklch(55.4% 0.046 257.417deg);
-  --accent: oklch(96.8% 0.007 247.896deg);
-  --accent-foreground: oklch(20.8% 0.042 265.755deg);
-  --destructive: oklch(57.7% 0.245 27.325deg);
-  --border: oklch(92.9% 0.013 255.508deg);
-  --input: oklch(92.9% 0.013 255.508deg);
-  --ring: oklch(70.4% 0.04 256.788deg);
-  --chart-1: oklch(64.6% 0.222 41.116deg);
-  --chart-2: oklch(60% 0.118 184.704deg);
-  --chart-3: oklch(39.8% 0.07 227.392deg);
-  --chart-4: oklch(82.8% 0.189 84.429deg);
-  --chart-5: oklch(76.9% 0.188 70.08deg);
-  --sidebar: oklch(98.4% 0.003 247.858deg);
-  --sidebar-foreground: oklch(12.9% 0.042 264.695deg);
-  --sidebar-primary: oklch(20.8% 0.042 265.755deg);
-  --sidebar-primary-foreground: oklch(98.4% 0.003 247.858deg);
-  --sidebar-accent: oklch(96.8% 0.007 247.896deg);
-  --sidebar-accent-foreground: oklch(20.8% 0.042 265.755deg);
-  --sidebar-border: oklch(92.9% 0.013 255.508deg);
-  --sidebar-ring: oklch(70.4% 0.04 256.788deg);
+
+  /* Resolved color scheme for the document. The server-rendered <html> class
+     (light | dark | system) overrides this — see the color-scheme rules below.
+     light-dark() reads color-scheme to pick each token, so all three modes
+     resolve in pure CSS with no JS and no flash. This bare value is the
+     fallback for the case where no class is present (e.g. static prerender);
+     keep it in sync with DEFAULT_THEME in src/lib/theme.ts. */
+  color-scheme: light dark;
+
+  /* Resolved scheme as a <color> sentinel (white = light, black = dark) for the
+     style-query technique below. Registered via @property further down. */
+  --scheme: light-dark(white, black);
+  --background: light-dark(oklch(100% 0 0deg), oklch(12.9% 0.042 264.695deg));
+  --foreground: light-dark(oklch(12.9% 0.042 264.695deg), oklch(98.4% 0.003 247.858deg));
+  --card: light-dark(oklch(100% 0 0deg), oklch(20.8% 0.042 265.755deg));
+  --card-foreground: light-dark(oklch(12.9% 0.042 264.695deg), oklch(98.4% 0.003 247.858deg));
+  --popover: light-dark(oklch(100% 0 0deg), oklch(20.8% 0.042 265.755deg));
+  --popover-foreground: light-dark(oklch(12.9% 0.042 264.695deg), oklch(98.4% 0.003 247.858deg));
+  --primary: light-dark(oklch(20.8% 0.042 265.755deg), oklch(92.9% 0.013 255.508deg));
+  --primary-foreground: light-dark(oklch(98.4% 0.003 247.858deg), oklch(20.8% 0.042 265.755deg));
+  --secondary: light-dark(oklch(96.8% 0.007 247.896deg), oklch(27.9% 0.041 260.031deg));
+  --secondary-foreground: light-dark(oklch(20.8% 0.042 265.755deg), oklch(98.4% 0.003 247.858deg));
+  --muted: light-dark(oklch(96.8% 0.007 247.896deg), oklch(27.9% 0.041 260.031deg));
+  --muted-foreground: light-dark(oklch(55.4% 0.046 257.417deg), oklch(70.4% 0.04 256.788deg));
+  --accent: light-dark(oklch(96.8% 0.007 247.896deg), oklch(27.9% 0.041 260.031deg));
+  --accent-foreground: light-dark(oklch(20.8% 0.042 265.755deg), oklch(98.4% 0.003 247.858deg));
+  --destructive: light-dark(oklch(57.7% 0.245 27.325deg), oklch(70.4% 0.191 22.216deg));
+  --border: light-dark(oklch(92.9% 0.013 255.508deg), oklch(100% 0 0deg / 10%));
+  --input: light-dark(oklch(92.9% 0.013 255.508deg), oklch(100% 0 0deg / 15%));
+  --ring: light-dark(oklch(70.4% 0.04 256.788deg), oklch(55.1% 0.027 264.364deg));
+  --chart-1: light-dark(oklch(64.6% 0.222 41.116deg), oklch(48.8% 0.243 264.376deg));
+  --chart-2: light-dark(oklch(60% 0.118 184.704deg), oklch(69.6% 0.17 162.48deg));
+  --chart-3: light-dark(oklch(39.8% 0.07 227.392deg), oklch(76.9% 0.188 70.08deg));
+  --chart-4: light-dark(oklch(82.8% 0.189 84.429deg), oklch(62.7% 0.265 303.9deg));
+  --chart-5: light-dark(oklch(76.9% 0.188 70.08deg), oklch(64.5% 0.246 16.439deg));
+  --sidebar: light-dark(oklch(98.4% 0.003 247.858deg), oklch(20.8% 0.042 265.755deg));
+  --sidebar-foreground: light-dark(oklch(12.9% 0.042 264.695deg), oklch(98.4% 0.003 247.858deg));
+  --sidebar-primary: light-dark(oklch(20.8% 0.042 265.755deg), oklch(48.8% 0.243 264.376deg));
+  --sidebar-primary-foreground: light-dark(
+    oklch(98.4% 0.003 247.858deg),
+    oklch(98.4% 0.003 247.858deg)
+  );
+  --sidebar-accent: light-dark(oklch(96.8% 0.007 247.896deg), oklch(27.9% 0.041 260.031deg));
+  --sidebar-accent-foreground: light-dark(
+    oklch(20.8% 0.042 265.755deg),
+    oklch(98.4% 0.003 247.858deg)
+  );
+  --sidebar-border: light-dark(oklch(92.9% 0.013 255.508deg), oklch(100% 0 0deg / 10%));
+  --sidebar-ring: light-dark(oklch(70.4% 0.04 256.788deg), oklch(55.1% 0.027 264.364deg));
 }
 
-@custom-variant dark (&:is(.dark *));
+/* Dark utilities (`dark:`) apply when the theme is forced dark OR when the
+   theme is `system` and the OS prefers dark. This keeps Tailwind's dark variant
+   correct across all three modes without any JS resolving system -> class.
+   Color tokens flip automatically via light-dark(), so `dark:` is only needed
+   for the occasional non-color utility. */
+@custom-variant dark {
+  /* stylelint-disable-next-line nesting-selector-no-missing-scoping-root -- `&` is scoped by Tailwind's @custom-variant, which stylelint can't parse */
+  &:where(.dark, .dark *) {
+    @slot;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    /* stylelint-disable-next-line nesting-selector-no-missing-scoping-root -- `&` is scoped by Tailwind's @custom-variant, which stylelint can't parse */
+    &:where(.system, .system *) {
+      @slot;
+    }
+  }
+}
+
+/* The server stamps one of these classes on <html> from the `theme` cookie, so
+   the correct color-scheme is present in the very first byte of HTML. */
+html.light {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.system {
+  color-scheme: light dark;
+}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -106,38 +155,47 @@ code {
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-.dark {
-  --background: oklch(12.9% 0.042 264.695deg);
-  --foreground: oklch(98.4% 0.003 247.858deg);
-  --card: oklch(20.8% 0.042 265.755deg);
-  --card-foreground: oklch(98.4% 0.003 247.858deg);
-  --popover: oklch(20.8% 0.042 265.755deg);
-  --popover-foreground: oklch(98.4% 0.003 247.858deg);
-  --primary: oklch(92.9% 0.013 255.508deg);
-  --primary-foreground: oklch(20.8% 0.042 265.755deg);
-  --secondary: oklch(27.9% 0.041 260.031deg);
-  --secondary-foreground: oklch(98.4% 0.003 247.858deg);
-  --muted: oklch(27.9% 0.041 260.031deg);
-  --muted-foreground: oklch(70.4% 0.04 256.788deg);
-  --accent: oklch(27.9% 0.041 260.031deg);
-  --accent-foreground: oklch(98.4% 0.003 247.858deg);
-  --destructive: oklch(70.4% 0.191 22.216deg);
-  --border: oklch(100% 0 0deg / 10%);
-  --input: oklch(100% 0 0deg / 15%);
-  --ring: oklch(55.1% 0.027 264.364deg);
-  --chart-1: oklch(48.8% 0.243 264.376deg);
-  --chart-2: oklch(69.6% 0.17 162.48deg);
-  --chart-3: oklch(76.9% 0.188 70.08deg);
-  --chart-4: oklch(62.7% 0.265 303.9deg);
-  --chart-5: oklch(64.5% 0.246 16.439deg);
-  --sidebar: oklch(20.8% 0.042 265.755deg);
-  --sidebar-foreground: oklch(98.4% 0.003 247.858deg);
-  --sidebar-primary: oklch(48.8% 0.243 264.376deg);
-  --sidebar-primary-foreground: oklch(98.4% 0.003 247.858deg);
-  --sidebar-accent: oklch(27.9% 0.041 260.031deg);
-  --sidebar-accent-foreground: oklch(98.4% 0.003 247.858deg);
-  --sidebar-border: oklch(100% 0 0deg / 10%);
-  --sidebar-ring: oklch(55.1% 0.027 264.364deg);
+/* ========================================
+   SCHEME-AWARE NON-COLOR STYLING
+   ----------------------------------------
+   Colors flip automatically via light-dark() above. For *non-color* swaps
+   (e.g. an elevation shadow in light vs. a border in dark) we expose the
+   resolved scheme as a registered <color> custom property and read it with a
+   style container query — the approach from
+   https://olliewilliams.xyz/blog/dark-mode/. light-dark() only resolves
+   colors, so we use white/black as sentinels for light/dark.
+
+   Because --scheme is driven by color-scheme, the style query is correct for
+   forced-dark AND system-resolved-dark in one rule. The class-based rules
+   below are the fallback for browsers without style-query support; they key
+   off the server-rendered class so forced light is never affected. */
+@property --scheme {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: white;
+}
+
+.surface-elevated {
+  box-shadow: 0 2px 3px rgb(0 0 0 / 20%);
+}
+
+@container style(--scheme: black) {
+  .surface-elevated {
+    border: 1px solid var(--border);
+    box-shadow: none;
+  }
+}
+
+.dark .surface-elevated {
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .system .surface-elevated {
+    border: 1px solid var(--border);
+    box-shadow: none;
+  }
 }
 
 @layer base {
