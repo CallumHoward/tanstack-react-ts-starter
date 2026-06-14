@@ -10,6 +10,8 @@ updates:
     groups:
       tanstack:
         patterns: ["@tanstack/*"]
+      react:
+        patterns: ["react", "react-dom"]
       oxc:
         patterns: ["oxlint*", "oxfmt", "eslint-plugin-playwright"]
       types:
