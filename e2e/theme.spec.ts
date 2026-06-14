@@ -27,8 +27,15 @@ test.describe("theme", () => {
   test("toggling updates the document class without a reload", async ({ page }) => {
     await page.goto("/");
 
-    await page.locator('input[name="theme"][value="dark"]').check();
-
-    await expect(page.locator("html")).toHaveClass(/dark/);
+    // The radios are visually hidden (sr-only); a real user clicks the styled
+    // labels. Retry until the click takes effect so the test doesn't race React
+    // hydration. Selecting "light" first guarantees the "dark" radio receives a
+    // real change event even if an earlier (pre-hydration) click left it
+    // natively selected without updating React state.
+    await expect(async () => {
+      await page.locator('label:has(input[value="light"])').click();
+      await page.locator('label:has(input[value="dark"])').click();
+      await expect(page.locator("html")).toHaveClass(/dark/, { timeout: 500 });
+    }).toPass({ timeout: 15000 });
   });
 });
