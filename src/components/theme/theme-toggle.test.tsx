@@ -2,11 +2,11 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
 
-import { ThemeProvider } from "#/components/theme-provider";
-import { ThemeToggle } from "#/components/theme-toggle";
+import { ThemeProvider } from "#/components/theme/theme-provider";
+import { ThemeToggle } from "#/components/theme/theme-toggle";
 import type { Theme } from "#/lib/theme";
 
-import { axe } from "../../vitest-setup";
+import { axe } from "../../../vitest-setup";
 
 function renderToggle(initialTheme: Theme = "system") {
   return {
