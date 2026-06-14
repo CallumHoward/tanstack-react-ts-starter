@@ -123,8 +123,6 @@ export default defineConfig({
         "testing-library/prefer-presence-queries": "error",
         "testing-library/prefer-query-by-disappearance": "error",
         "testing-library/prefer-screen-queries": "error",
-        // Flag fireEvent.* calls that have a higher-fidelity userEvent
-        // equivalent (e.g. fireEvent.click -> userEvent.click).
         "testing-library/prefer-user-event": "error",
         "testing-library/render-result-naming-convention": "error",
       },
