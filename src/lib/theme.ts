@@ -21,14 +21,18 @@ function isTheme(value: string | undefined): value is Theme {
   return value === "light" || value === "dark" || value === "system";
 }
 
+/** Resolve a raw cookie value to a theme, falling back to the default. */
+export function resolveTheme(cookie: string | undefined): Theme {
+  return isTheme(cookie) ? cookie : DEFAULT_THEME;
+}
+
 /**
  * Read the persisted theme on the server so the root route can stamp the correct class on <html>
  * before the first byte is sent — no flash, no JS.
  */
-export const getThemeServerFn = createServerFn({ method: "GET" }).handler(() => {
-  const cookie = getCookie(THEME_COOKIE);
-  return isTheme(cookie) ? cookie : DEFAULT_THEME;
-});
+export const getThemeServerFn = createServerFn({ method: "GET" }).handler(() =>
+  resolveTheme(getCookie(THEME_COOKIE)),
+);
 
 /**
  * Persist and apply a theme on the client without a round trip: swap the <html> class (which drives
