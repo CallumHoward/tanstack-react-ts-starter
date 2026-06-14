@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { ThemeProvider } from "#/components/theme-provider";
@@ -8,11 +9,14 @@ import type { Theme } from "#/lib/theme";
 import { axe } from "../../vitest-setup";
 
 function renderToggle(initialTheme: Theme = "system") {
-  return render(
-    <ThemeProvider initialTheme={initialTheme}>
-      <ThemeToggle />
-    </ThemeProvider>,
-  );
+  return {
+    user: userEvent.setup(),
+    ...render(
+      <ThemeProvider initialTheme={initialTheme}>
+        <ThemeToggle />
+      </ThemeProvider>,
+    ),
+  };
 }
 
 describe("ThemeToggle", () => {
@@ -28,10 +32,10 @@ describe("ThemeToggle", () => {
     expect(screen.getByRole("radio", { name: /light/i })).not.toBeChecked();
   });
 
-  it("applies the chosen theme to the document element and cookie", () => {
-    renderToggle("system");
+  it("applies the chosen theme to the document element and cookie", async () => {
+    const { user } = renderToggle("system");
 
-    fireEvent.click(screen.getByRole("radio", { name: /dark/i }));
+    await user.click(screen.getByRole("radio", { name: /dark/i }));
 
     expect(document.documentElement).toHaveClass("dark");
     expect(document.documentElement).not.toHaveClass("system");
@@ -39,10 +43,10 @@ describe("ThemeToggle", () => {
     expect(screen.getByRole("radio", { name: /dark/i })).toBeChecked();
   });
 
-  it("swaps the class when switching between themes", () => {
-    renderToggle("dark");
+  it("swaps the class when switching between themes", async () => {
+    const { user } = renderToggle("dark");
 
-    fireEvent.click(screen.getByRole("radio", { name: /light/i }));
+    await user.click(screen.getByRole("radio", { name: /light/i }));
 
     expect(document.documentElement).toHaveClass("light");
     expect(document.documentElement).not.toHaveClass("dark");
