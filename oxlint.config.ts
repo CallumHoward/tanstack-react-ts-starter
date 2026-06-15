@@ -40,6 +40,19 @@ export default defineConfig({
 
     "import/no-cycle": "error",
 
+    // Consolidate on the `#/` src alias (Node subpath import); ban the old `@/`.
+    "no-restricted-imports": [
+      "error",
+      {
+        patterns: [
+          {
+            regex: "^@/",
+            message: "Use the '#/' alias for src imports (the '@/' alias was removed).",
+          },
+        ],
+      },
+    ],
+
     "check-file/filename-blocklist": [
       "error",
       {
