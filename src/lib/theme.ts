@@ -42,5 +42,8 @@ export function applyTheme(theme: Theme): void {
   const root = document.documentElement;
   root.classList.remove(...THEMES);
   root.classList.add(theme);
-  document.cookie = `${THEME_COOKIE}=${theme}; path=/; max-age=${ONE_YEAR_SECONDS}; samesite=lax`;
+  // Mark the cookie Secure on HTTPS so it is never sent over plain HTTP; omit it
+  // on http (e.g. local dev) where a Secure cookie would be dropped.
+  const secure = window.location.protocol === "https:" ? "; secure" : "";
+  document.cookie = `${THEME_COOKIE}=${theme}; path=/; max-age=${ONE_YEAR_SECONDS}; samesite=lax${secure}`;
 }
