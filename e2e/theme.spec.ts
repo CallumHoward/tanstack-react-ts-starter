@@ -27,9 +27,24 @@ test.describe("theme", () => {
   test("toggling updates the document class (JS-enhanced, no reload)", async ({ page }) => {
     await page.goto("/");
 
+    // Wait for hydration so the click is handled client-side; a pre-hydration
+    // click would fall through to a form POST (full navigation) instead.
+    await page.waitForFunction(() =>
+      Object.keys(document.querySelector('button[name="theme"]') ?? {}).some((key) =>
+        key.startsWith("__reactProps$"),
+      ),
+    );
+
+    // Tag the window; a full-page reload (the no-JS form POST) would wipe this.
+    await page.evaluate(() => {
+      (globalThis as { __noReload?: boolean }).__noReload = true;
+    });
+
     await page.locator('button[value="dark"]').click();
 
     await expect(page.locator("html")).toHaveClass(/dark/);
+    const survived = await page.evaluate(() => (globalThis as { __noReload?: boolean }).__noReload);
+    expect(survived, "client-side switch should not reload the page").toBe(true);
   });
 });
 

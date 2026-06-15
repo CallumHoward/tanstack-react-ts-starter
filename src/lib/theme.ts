@@ -56,7 +56,9 @@ export function safeRedirectPath(referer: string | undefined, host: string | und
   try {
     const url = new URL(referer);
     if (host && url.host !== host) return "/";
-    return url.pathname + url.search;
+    // Collapse leading slashes so the result can't become a protocol-relative
+    // URL ("//evil.com"), which browsers would treat as an off-site redirect.
+    return url.pathname.replace(/^\/+/, "/") + url.search;
   } catch {
     return "/";
   }

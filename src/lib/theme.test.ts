@@ -45,4 +45,11 @@ describe("theme", () => {
     expect(safeRedirectPath(undefined, "localhost:3000")).toBe("/");
     expect(safeRedirectPath("not a url", "localhost:3000")).toBe("/");
   });
+
+  it("safeRedirectPath collapses leading slashes to avoid protocol-relative open redirects", () => {
+    const path = safeRedirectPath("https://localhost:3000//evil.example/x", "localhost:3000");
+
+    expect(path).toBe("/evil.example/x");
+    expect(path.startsWith("//")).toBe(false);
+  });
 });
