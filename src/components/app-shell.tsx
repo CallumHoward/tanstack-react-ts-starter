@@ -1,6 +1,6 @@
-import { ThemeProvider } from "@/components/theme/theme-provider";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
-import type { Theme } from "@/lib/theme";
+import { ThemeProvider } from "#/components/theme/theme-provider";
+import { ThemeToggle } from "#/components/theme/theme-toggle";
+import type { Theme } from "#/lib/theme";
 
 /**
  * The in-body application shell: provides theme context and the global header with the theme

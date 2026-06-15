@@ -1,5 +1,5 @@
-import { useTheme } from "@/components/theme/theme-context";
-import { THEMES, type Theme } from "@/lib/theme";
+import { useTheme } from "#/components/theme/theme-context";
+import { THEMES, type Theme } from "#/lib/theme";
 
 const LABELS: Record<Theme, string> = {
   light: "Light",

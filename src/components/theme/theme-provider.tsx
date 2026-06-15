@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 
-import { ThemeContext } from "@/components/theme/theme-context";
-import { applyTheme, type Theme } from "@/lib/theme";
+import { ThemeContext } from "#/components/theme/theme-context";
+import { applyTheme, type Theme } from "#/lib/theme";
 
 export function ThemeProvider({
   initialTheme,

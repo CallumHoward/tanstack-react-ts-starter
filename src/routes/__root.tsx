@@ -2,9 +2,9 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
-import { AppShell } from "@/components/app-shell";
-import { NotFound } from "@/components/not-found";
-import { getThemeServerFn } from "@/lib/theme";
+import { AppShell } from "#/components/app-shell";
+import { NotFound } from "#/components/not-found";
+import { getThemeServerFn } from "#/lib/theme";
 
 import appCss from "../styles.css?url";
 
