@@ -24,18 +24,41 @@ test.describe("theme", () => {
     await expect(page.locator("body")).toHaveCSS("color-scheme", "light dark");
   });
 
-  test("toggling updates the document class without a reload", async ({ page }) => {
+  test("toggling updates the document class (JS-enhanced, no reload)", async ({ page }) => {
     await page.goto("/");
 
-    // The radios are visually hidden (sr-only); a real user clicks the styled
-    // labels. Retry until the click takes effect so the test doesn't race React
-    // hydration. Selecting "light" first guarantees the "dark" radio receives a
-    // real change event even if an earlier (pre-hydration) click left it
-    // natively selected without updating React state.
-    await expect(async () => {
-      await page.locator('label:has(input[value="light"])').click();
-      await page.locator('label:has(input[value="dark"])').click();
-      await expect(page.locator("html")).toHaveClass(/dark/, { timeout: 500 });
-    }).toPass({ timeout: 15000 });
+    // Wait for hydration so the click is handled client-side; a pre-hydration
+    // click would fall through to a form POST (full navigation) instead.
+    await page.waitForFunction(() =>
+      Object.keys(document.querySelector('button[name="theme"]') ?? {}).some((key) =>
+        key.startsWith("__reactProps$"),
+      ),
+    );
+
+    // Tag the window; a full-page reload (the no-JS form POST) would wipe this.
+    await page.evaluate(() => {
+      (globalThis as { __noReload?: boolean }).__noReload = true;
+    });
+
+    await page.locator('button[value="dark"]').click();
+
+    await expect(page.locator("html")).toHaveClass(/dark/);
+    const survived = await page.evaluate(() => (globalThis as { __noReload?: boolean }).__noReload);
+    expect(survived, "client-side switch should not reload the page").toBe(true);
+  });
+});
+
+test.describe("theme without JavaScript", () => {
+  test.use({ javaScriptEnabled: false });
+
+  test("the toggle still switches theme via a form POST", async ({ page }) => {
+    await page.goto("/");
+
+    // With JS disabled, clicking submits the form to the server function, which
+    // sets the cookie and redirects back — the reloaded page is server-rendered
+    // with the new class.
+    await page.locator('button[value="dark"]').click();
+
+    await expect(page.locator("html")).toHaveClass(/dark/);
   });
 });

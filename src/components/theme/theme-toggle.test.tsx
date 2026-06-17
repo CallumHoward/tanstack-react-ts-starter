@@ -25,28 +25,28 @@ describe("ThemeToggle", () => {
     document.cookie = "theme=; path=/; max-age=0";
   });
 
-  it("reflects the initial theme as the checked option", () => {
+  it("marks the initial theme as the pressed option", () => {
     renderToggle("dark");
 
-    expect(screen.getByRole("radio", { name: /dark/i })).toBeChecked();
-    expect(screen.getByRole("radio", { name: /light/i })).not.toBeChecked();
+    expect(screen.getByRole("button", { name: /dark/i })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: /light/i })).toHaveAttribute("aria-pressed", "false");
   });
 
   it("applies the chosen theme to the document element and cookie", async () => {
     const { user } = renderToggle("system");
 
-    await user.click(screen.getByRole("radio", { name: /dark/i }));
+    await user.click(screen.getByRole("button", { name: /dark/i }));
 
     expect(document.documentElement).toHaveClass("dark");
     expect(document.documentElement).not.toHaveClass("system");
     expect(document.cookie).toContain("theme=dark");
-    expect(screen.getByRole("radio", { name: /dark/i })).toBeChecked();
+    expect(screen.getByRole("button", { name: /dark/i })).toHaveAttribute("aria-pressed", "true");
   });
 
   it("swaps the class when switching between themes", async () => {
     const { user } = renderToggle("dark");
 
-    await user.click(screen.getByRole("radio", { name: /light/i }));
+    await user.click(screen.getByRole("button", { name: /light/i }));
 
     expect(document.documentElement).toHaveClass("light");
     expect(document.documentElement).not.toHaveClass("dark");

@@ -13,7 +13,7 @@ describe("AppShell", () => {
       </AppShell>,
     );
 
-    expect(screen.getAllByRole("radio")).toHaveLength(3);
+    expect(screen.getAllByRole("button")).toHaveLength(3);
     expect(screen.getByRole("main")).toBeVisible();
   });
 
@@ -24,7 +24,7 @@ describe("AppShell", () => {
       </AppShell>,
     );
 
-    expect(screen.getByRole("radio", { name: /dark/i })).toBeChecked();
+    expect(screen.getByRole("button", { name: /dark/i })).toHaveAttribute("aria-pressed", "true");
   });
 
   it("has no accessibility violations", async () => {
