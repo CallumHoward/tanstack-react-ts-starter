@@ -20,6 +20,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      # Pin Node to the repo's version so the registry query runs deterministically.
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+
       - name: Resolve pnpm versions
         id: versions
         shell: bash
@@ -50,7 +55,7 @@ jobs:
         # Note: PRs opened with the default GITHUB_TOKEN do not trigger the CI
         # workflow. To have CI run automatically on this PR, pass a PAT or GitHub
         # App token via `token:` here instead.
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "chore: update pnpm to ${{ steps.versions.outputs.latest }}"
           branch: chore/update-pnpm
