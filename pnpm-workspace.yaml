@@ -5,3 +5,9 @@ allowBuilds:
 # Supply-chain safety: don't install any package version published less than
 # 7 days ago (value is in minutes). Gives releases time to be vetted/yanked.
 minimumReleaseAge: 10080
+# The TypeScript 7.0 RC (typescript + its @typescript/* platform binaries) is
+# pinned deliberately and is newer than the window above; opt it out so the RC
+# can install. Remove once the stable 7.0 release is older than the cutoff.
+minimumReleaseAgeExclude:
+  - typescript
+  - "@typescript/*"

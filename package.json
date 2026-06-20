@@ -18,7 +18,7 @@
     "lint:css": "stylelint \"**/*.css\"",
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
-    "check": "tsgo --noEmit",
+    "check": "tsc --noEmit",
     "fallow": "fallow --fail-on-issues",
     "postinstall": "lefthook install"
   },
@@ -47,7 +47,6 @@
     "@types/node": "^24.13.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "@typescript/native-preview": "7.0.0-dev.20260527.2",
     "@vitejs/plugin-react": "^6.0.2",
     "@vitest/coverage-v8": "^4.1.8",
     "babel-plugin-react-compiler": "^1.0.0",
@@ -65,7 +64,7 @@
     "rollup-plugin-visualizer": "^7.0.1",
     "stylelint": "^17.13.0",
     "stylelint-config-standard": "^40.0.0",
-    "typescript": "^6.0.3",
+    "typescript": "7.0.1-rc",
     "vite": "^8.0.16",
     "vitest": "^4.1.8",
     "vitest-axe": "^0.1.0"
