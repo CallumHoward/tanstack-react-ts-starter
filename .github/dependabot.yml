@@ -18,9 +18,9 @@ updates:
         patterns: ["@types/*"]
     ignore:
       - dependency-name: "nitro" # intentionally tracks the v3 beta "latest"
-      # @typescript/native-preview (tsgo) ships daily dev builds; bump it by
-      # hand rather than churning a PR every release.
-      - dependency-name: "@typescript/native-preview"
+      # typescript is pinned to the TypeScript 7.0 RC (pre-release); bump it by
+      # hand until the stable 7.0 release lands.
+      - dependency-name: "typescript"
       # Keep @types/node on the major matching the Node runtime (.nvmrc);
       # bump it by hand when moving to the next Node LTS.
       - dependency-name: "@types/node"
