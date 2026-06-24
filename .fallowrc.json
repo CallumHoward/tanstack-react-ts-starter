@@ -1,5 +1,13 @@
 {
   "$schema": "https://raw.githubusercontent.com/fallow-rs/fallow/main/schema.json",
-  "ignoreDependencies": ["babel-plugin-react-compiler"],
-  "dynamicallyLoaded": ["vitest-setup.ts"]
+  "ignoreDependencies": [
+    "babel-plugin-react-compiler",
+    "ajv",
+    "ajv-draft-04",
+    "ajv-formats",
+    "jsonc-parser",
+    "yaml"
+  ],
+  "dynamicallyLoaded": ["vitest-setup.ts"],
+  "ignorePatterns": ["scripts/**"]
 }
