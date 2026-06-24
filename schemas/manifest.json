@@ -1,0 +1,13 @@
+{
+  "https://raw.githubusercontent.com/fallow-rs/fallow/main/schema.json": "fallow.schema.json",
+  "https://www.schemastore.org/tsconfig.json": "tsconfig.schema.json",
+  "https://www.schemastore.org/claude-code-settings.json": "claude-code-settings.schema.json",
+  "https://www.schemastore.org/web-manifest-combined.json": "web-manifest-combined.schema.json",
+  "https://json.schemastore.org/web-manifest.json": "web-manifest.schema.json",
+  "https://json.schemastore.org/web-manifest-app-info.json": "web-manifest-app-info.schema.json",
+  "https://json.schemastore.org/web-manifest-share-target.json": "web-manifest-share-target.schema.json",
+  "https://www.schemastore.org/github-workflow.json": "github-workflow.schema.json",
+  "https://raw.githubusercontent.com/evilmartians/lefthook/master/schema.json": "lefthook.schema.json",
+  "https://www.schemastore.org/dependabot-2.0.json": "dependabot-2.0.schema.json",
+  "https://www.schemastore.org/pnpm-workspace.json": "pnpm-workspace.schema.json"
+}
