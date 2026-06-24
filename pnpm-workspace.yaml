@@ -5,3 +5,12 @@ allowBuilds:
 # Supply-chain safety: don't install any package version published less than
 # 7 days ago (value is in minutes). Gives releases time to be vetted/yanked.
 minimumReleaseAge: 10080
+# Supply-chain safety: refuse to install a version whose trust level (trusted
+# publisher > provenance > none) has dropped relative to the package's earlier
+# releases. Guards against hijacked-maintainer downgrade attacks.
+trustPolicy: no-downgrade
+# Known-safe trust-downgrade exceptions. semver@6.3.1 is an old, ubiquitous
+# transitive dep (Babel toolchain) that predates npm provenance, so it reads as
+# a downgrade vs newer semver 7.x releases. Not a takeover — just legacy.
+trustPolicyExclude:
+  - semver@6.3.1
