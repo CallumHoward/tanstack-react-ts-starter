@@ -5,5 +5,5 @@ export default defineConfig({
   jsdoc: true,
   sortImports: true,
   sortTailwindcss: { stylesheet: "src/styles.css" },
-  ignorePatterns: [".claude/**", "src/routeTree.gen.ts", "pnpm-lock.yaml"],
+  ignorePatterns: [".claude/**", "schemas/**", "src/routeTree.gen.ts", "pnpm-lock.yaml"],
 });

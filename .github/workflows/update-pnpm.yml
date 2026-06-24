@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://www.schemastore.org/github-workflow.json
 name: Update pnpm
 
 # Opens a PR to bump the pnpm version pinned in package.json's "packageManager"
