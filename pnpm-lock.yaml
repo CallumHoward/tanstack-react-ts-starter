@@ -97,8 +97,8 @@ importers:
         specifier: ^7.1.1
         version: 7.1.1(eslint@10.4.1(jiti@2.7.0))
       eslint-plugin-react-you-might-not-need-an-effect:
-        specifier: ^1.0.0
-        version: 1.0.0(eslint@10.4.1(jiti@2.7.0))
+        specifier: ^1.0.1
+        version: 1.0.1(eslint@10.4.1(jiti@2.7.0))
       eslint-plugin-testing-library:
         specifier: ^7.16.2
         version: 7.16.2(eslint@10.4.1(jiti@2.7.0))(typescript@6.0.3)
@@ -2158,8 +2158,8 @@ packages:
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0 || ^10.0.0
 
-  eslint-plugin-react-you-might-not-need-an-effect@1.0.0:
-    resolution: {integrity: sha512-8exakZ5dCJdZb7TA3P8vD47HlnM3IllA9sjKzU22wyLEx0PZBDjFPxT5+5Rb10tSE6uWmwoBsgClIDNuJ8UW6g==}
+  eslint-plugin-react-you-might-not-need-an-effect@1.0.1:
+    resolution: {integrity: sha512-oOhQTYhor88Xp8RVytq25tvBfiAjU0r9SCDC51Qop+3Wg5BR1xGMAkM+/dV4MZbcMhdaU1L9bkv6LC95JmiTig==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       eslint: '>=8.40.0'
@@ -3101,6 +3101,11 @@ packages:
 
   srvx@0.11.16:
     resolution: {integrity: sha512-bp07zRuycfTY43IjAvvTFnmnJi8ikW0VFiHwOhhYcVW/L4xQ1XY4PAd4Nuum1rsA17C39zL7x+CDhrn5AL32Rw==}
+    engines: {node: '>=20.16.0'}
+    hasBin: true
+
+  srvx@0.11.17:
+    resolution: {integrity: sha512-43yM4luKfCJamyCMhrUeHUPOrf8TdZe7kN8s5zayZCH5OeprYqi49Aso5ZvHXR4aB+DHaRNO/diNFgZSMNG8Xw==}
     engines: {node: '>=20.16.0'}
     hasBin: true
 
@@ -5225,7 +5230,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-react-you-might-not-need-an-effect@1.0.0(eslint@10.4.1(jiti@2.7.0)):
+  eslint-plugin-react-you-might-not-need-an-effect@1.0.1(eslint@10.4.1(jiti@2.7.0)):
     dependencies:
       eslint: 10.4.1(jiti@2.7.0)
       globals: 16.5.0
@@ -5443,7 +5448,7 @@ snapshots:
   h3@2.0.1-rc.20(crossws@0.4.6(srvx@0.11.16)):
     dependencies:
       rou3: 0.8.1
-      srvx: 0.11.16
+      srvx: 0.11.17
     optionalDependencies:
       crossws: 0.4.6(srvx@0.11.16)
 
@@ -6153,6 +6158,8 @@ snapshots:
   source-map@0.7.6: {}
 
   srvx@0.11.16: {}
+
+  srvx@0.11.17: {}
 
   stackback@0.0.2: {}
 
