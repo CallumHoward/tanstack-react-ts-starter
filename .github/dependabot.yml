@@ -25,3 +25,11 @@ updates:
       # bump it by hand when moving to the next Node LTS.
       - dependency-name: "@types/node"
         update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: "github-actions" # bumps SHA-pinned actions, keeps # vX comment
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 7 # min-release-age equivalent for GHA: wait out same-day yanks
+    open-pull-requests-limit: 10

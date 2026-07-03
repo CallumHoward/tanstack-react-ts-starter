@@ -18,10 +18,10 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
 
       # Pin Node to the repo's version so the registry query runs deterministically.
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
           node-version-file: .nvmrc
 
@@ -55,7 +55,7 @@ jobs:
         # Note: PRs opened with the default GITHUB_TOKEN do not trigger the CI
         # workflow. To have CI run automatically on this PR, pass a PAT or GitHub
         # App token via `token:` here instead.
-        uses: peter-evans/create-pull-request@v8
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8
         with:
           commit-message: "chore: update pnpm to ${{ steps.versions.outputs.latest }}"
           branch: chore/update-pnpm
