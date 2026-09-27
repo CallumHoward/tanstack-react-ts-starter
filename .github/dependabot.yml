@@ -12,6 +12,9 @@ updates:
         patterns: ["@tanstack/*"]
       react:
         patterns: ["react", "react-dom"]
+      # Spans dependencies and devDependencies; the Vite plugin must match the direct package.
+      tailwind:
+        patterns: ["tailwindcss", "@tailwindcss/*"]
       oxc:
         patterns: ["oxlint*", "oxfmt", "eslint-plugin-playwright"]
       types:
@@ -30,6 +33,9 @@ updates:
         update-types: ["minor", "patch"]
     ignore:
       - dependency-name: "nitro" # intentionally tracks the v3 beta "latest"
+      # 0.x minors are breaking; bump alongside @vitejs/plugin-react when its peer range moves.
+      - dependency-name: "oxc-transform-react"
+        update-types: ["version-update:semver-minor"]
       # Stops a non-dealiased bump from replacing the TS 6 API alias with TS 7.
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]
