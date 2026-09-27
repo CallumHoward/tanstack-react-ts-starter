@@ -37,6 +37,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # pnpm only warns on unmet peers; fail so Dependabot can't bump past a peer range.
+      - name: Peer dependencies
+        run: pnpm peers check
+
       - name: Typecheck
         run: pnpm check
 
