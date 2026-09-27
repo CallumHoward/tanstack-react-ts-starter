@@ -10,9 +10,9 @@ on:
     - cron: "0 8 1,15 * *"
   workflow_dispatch:
 
+# The branch push and PR use a GitHub App token, so GITHUB_TOKEN only needs read.
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   update:
@@ -50,13 +50,20 @@ jobs:
           # Targeted replace so the rest of package.json formatting is untouched.
           sed -i "s/\"packageManager\": \"pnpm@${CURRENT}\"/\"packageManager\": \"pnpm@${LATEST}\"/" package.json
 
+      # An App token (unlike GITHUB_TOKEN) lets the PR trigger the CI workflow.
+      - name: Generate App token
+        if: steps.versions.outputs.changed == 'true'
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
       - name: Create pull request
         if: steps.versions.outputs.changed == 'true'
-        # Note: PRs opened with the default GITHUB_TOKEN do not trigger the CI
-        # workflow. To have CI run automatically on this PR, pass a PAT or GitHub
-        # App token via `token:` here instead.
         uses: peter-evans/create-pull-request@v8
         with:
+          token: ${{ steps.app-token.outputs.token }}
           commit-message: "chore: update pnpm to ${{ steps.versions.outputs.latest }}"
           branch: chore/update-pnpm
           delete-branch: true
