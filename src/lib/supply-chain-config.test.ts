@@ -31,8 +31,7 @@ describe("pnpm supply-chain config", () => {
   });
 
   it("fails resolution instead of falling back to immature versions", () => {
-    // Defaults to true only while minimumReleaseAge is set explicitly.
-    expect(config.minimumReleaseAgeStrict).not.toBe(false);
+    expect(config.minimumReleaseAgeStrict).toBe(true);
   });
 
   it("does not globally allow dependency build scripts", () => {
