@@ -19,3 +19,7 @@ stats.html
 test-results
 playwright-report
 playwright/.cache
+
+# Capacitor: generated mobile web root (iOS build artifacts are handled by
+# the Capacitor-managed ios/.gitignore)
+www

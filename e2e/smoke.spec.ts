@@ -15,8 +15,8 @@ test.describe("home page", () => {
     await page.goto("/");
 
     // Web-first assertion auto-waits for the element, giving the page time to
-    // render and hydrate; the route renders <main>Hello world</main>.
-    await expect(page.locator("main")).toContainText("Hello world");
+    // render and hydrate before the console checks below.
+    await expect(page.locator("main h1")).toHaveText("Home");
 
     expect(pageErrors, "uncaught page exceptions").toEqual([]);
     expect(consoleErrors, "browser console errors").toEqual([]);
