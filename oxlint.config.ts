@@ -113,6 +113,20 @@ export default defineConfig({
     "react-hooks-js/config": "error",
     "react-hooks-js/gating": "error",
 
+    // Native ports of the compiler rules above (default-on via correctness); avoid double reports.
+    "react/static-components": "off",
+    "react/use-memo": "off",
+    "react/void-use-memo": "off",
+    "react/preserve-manual-memoization": "off",
+    "react/incompatible-library": "off",
+    "react/immutability": "off",
+    "react/globals": "off",
+    "react/refs": "off",
+    "react/set-state-in-effect": "off",
+    "react/error-boundaries": "off",
+    "react/purity": "off",
+    "react/set-state-in-render": "off",
+
     // "You Might Not Need an Effect" rules (heuristic; start as warnings).
     // no-derived-state is omitted: it overlaps react-hooks-js/no-deriving-state-in-effects.
     "no-effect/no-chain-state-updates": "warn",
