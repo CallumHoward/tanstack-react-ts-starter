@@ -11,10 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TabsRouteImport } from './routes/_tabs'
 import { Route as TabsIndexRouteImport } from './routes/_tabs.index'
-import { Route as NotesNoteIdRouteImport } from './routes/notes.$noteId'
-import { Route as TabsSettingsRouteImport } from './routes/_tabs.settings'
-import { Route as TabsNotesRouteImport } from './routes/_tabs.notes'
 import { Route as TabsAboutRouteImport } from './routes/_tabs.about'
+import { Route as TabsNotesRouteImport } from './routes/_tabs.notes'
+import { Route as TabsSettingsRouteImport } from './routes/_tabs.settings'
+import { Route as NotesNoteIdRouteImport } from './routes/notes.$noteId'
 
 const TabsRoute = TabsRouteImport.update({
   id: '/_tabs',
@@ -25,14 +25,9 @@ const TabsIndexRoute = TabsIndexRouteImport.update({
   path: '/',
   getParentRoute: () => TabsRoute,
 } as any)
-const NotesNoteIdRoute = NotesNoteIdRouteImport.update({
-  id: '/notes/$noteId',
-  path: '/notes/$noteId',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TabsSettingsRoute = TabsSettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
+const TabsAboutRoute = TabsAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => TabsRoute,
 } as any)
 const TabsNotesRoute = TabsNotesRouteImport.update({
@@ -40,10 +35,15 @@ const TabsNotesRoute = TabsNotesRouteImport.update({
   path: '/notes',
   getParentRoute: () => TabsRoute,
 } as any)
-const TabsAboutRoute = TabsAboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const TabsSettingsRoute = TabsSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => TabsRoute,
+} as any)
+const NotesNoteIdRoute = NotesNoteIdRouteImport.update({
+  id: '/notes/$noteId',
+  path: '/notes/$noteId',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -105,18 +105,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TabsIndexRouteImport
       parentRoute: typeof TabsRoute
     }
-    '/notes/$noteId': {
-      id: '/notes/$noteId'
-      path: '/notes/$noteId'
-      fullPath: '/notes/$noteId'
-      preLoaderRoute: typeof NotesNoteIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_tabs/settings': {
-      id: '/_tabs/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof TabsSettingsRouteImport
+    '/_tabs/about': {
+      id: '/_tabs/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof TabsAboutRouteImport
       parentRoute: typeof TabsRoute
     }
     '/_tabs/notes': {
@@ -126,12 +119,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TabsNotesRouteImport
       parentRoute: typeof TabsRoute
     }
-    '/_tabs/about': {
-      id: '/_tabs/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof TabsAboutRouteImport
+    '/_tabs/settings': {
+      id: '/_tabs/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof TabsSettingsRouteImport
       parentRoute: typeof TabsRoute
+    }
+    '/notes/$noteId': {
+      id: '/notes/$noteId'
+      path: '/notes/$noteId'
+      fullPath: '/notes/$noteId'
+      preLoaderRoute: typeof NotesNoteIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
