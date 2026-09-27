@@ -16,6 +16,12 @@ updates:
         patterns: ["oxlint*", "oxfmt", "eslint-plugin-playwright"]
       types:
         patterns: ["@types/*"]
+      vitest:
+        patterns: ["vitest", "@vitest/*"]
+      # Groups match in order, so this only catches dev deps not grouped above.
+      dev-minor-patch:
+        dependency-type: "development"
+        update-types: ["minor", "patch"]
     ignore:
       - dependency-name: "nitro" # intentionally tracks the v3 beta "latest"
       # @typescript/native-preview (tsgo) ships daily dev builds; bump it by
