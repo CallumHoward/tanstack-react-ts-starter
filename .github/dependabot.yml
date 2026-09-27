@@ -16,6 +16,9 @@ updates:
         patterns: ["oxlint*", "oxfmt", "eslint-plugin-playwright"]
       types:
         patterns: ["@types/*"]
+      # plugin-react pins oxc-transform-react's minor via its peer range.
+      react-compiler:
+        patterns: ["@vitejs/plugin-react", "oxc-transform-react"]
       vitest:
         patterns: ["vitest", "@vitest/*"]
       # Groups match in order, so this only catches dev deps not grouped above.
