@@ -1,5 +1,4 @@
 {
   "$schema": "https://raw.githubusercontent.com/fallow-rs/fallow/main/schema.json",
-  "ignoreDependencies": ["@typescript/native", "oxc-transform-react"],
-  "dynamicallyLoaded": ["vitest-setup.ts"]
+  "ignoreDependencies": ["@typescript/native", "oxc-transform-react"]
 }
