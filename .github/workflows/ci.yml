@@ -46,6 +46,10 @@ jobs:
       - name: Peer dependencies
         run: pnpm peers check
 
+      # Fail if the lockfile has avoidable duplicate resolutions (fix with `pnpm dedupe`).
+      - name: Dedupe
+        run: pnpm dedupe --check
+
       - name: Typecheck
         run: pnpm check
 
