@@ -89,7 +89,7 @@ jobs:
             ${{ runner.os }}-playwright-
 
       - name: Install Playwright Chromium
-        run: pnpm exec playwright install --with-deps chromium
+        run: pnpm exec playwright install chromium
 
       # CI runs against the production preview (pnpm serve), reusing the build
       # from the step above rather than rebuilding.
