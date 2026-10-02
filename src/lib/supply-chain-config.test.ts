@@ -15,6 +15,7 @@ const config = parse(readFileSync(path.join(process.cwd(), "pnpm-workspace.yaml"
   minimumReleaseAge?: number;
   minimumReleaseAgeStrict?: boolean;
   dangerouslyAllowAllBuilds?: boolean;
+  autoDedupe?: boolean;
 };
 
 describe("pnpm supply-chain config", () => {
@@ -37,5 +38,9 @@ describe("pnpm supply-chain config", () => {
   it("does not globally allow dependency build scripts", () => {
     // allowBuilds is an explicit allowlist; this catches the escape hatch.
     expect(config.dangerouslyAllowAllBuilds).not.toBe(true);
+  });
+
+  it("deduplicates compatible dependency versions on install", () => {
+    expect(config.autoDedupe).toBe(true);
   });
 });
