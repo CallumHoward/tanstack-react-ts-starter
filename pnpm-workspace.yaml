@@ -12,3 +12,5 @@ trustPolicyExclude:
   - semver@6.3.1 # legacy transitive dep predating npm provenance; false positive
 # Forbid transitive deps from resolving via git/tarball URLs (registry only).
 blockExoticSubdeps: true
+# Pick one version per dependency when a single version satisfies every range.
+autoDedupe: true
