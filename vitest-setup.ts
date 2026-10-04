@@ -5,8 +5,10 @@ import { configureAxe } from "vitest-axe";
 import * as matchers from "vitest-axe/matchers";
 
 declare module "vitest" {
-  interface Assertion {
-    toHaveNoViolations(): void;
+  // Type parameters must mirror vitest's own Matchers declaration exactly, or
+  // the merge fails; T is unused here.
+  interface Matchers<R extends void | Promise<void> = void | Promise<void>, T = unknown> {
+    toHaveNoViolations(): R;
   }
 }
 
