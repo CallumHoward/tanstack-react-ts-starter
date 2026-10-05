@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   ci:
-    uses: callumhoward/ts-shared-config/.github/workflows/ci-reusable.yml@v1
+    uses: callumhoward/ts-shared-config/.github/workflows/ci-reusable.yml@dccb6f3467eeb2ca80fc6327c66fb7c920a36836 # v1
     with:
       run-build: true
       run-e2e: true
