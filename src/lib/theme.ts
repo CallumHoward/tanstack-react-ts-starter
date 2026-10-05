@@ -37,7 +37,7 @@ export function resolveTheme(cookie: string | undefined): Theme {
  * Read the persisted theme on the server so the root route can stamp the correct class on <html>
  * before the first byte is sent — no flash, no JS.
  */
-export const getThemeServerFunction = createServerFn({ method: "GET" }).handler(() =>
+export const getThemeServerFn = createServerFn({ method: "GET" }).handler(() =>
   resolveTheme(getCookie(THEME_COOKIE)),
 );
 
@@ -69,7 +69,7 @@ export function safeRedirectPath(referer: string | undefined, host: string | und
  * path: the browser submits the toggle form here, the server sets the cookie and the next render
  * stamps the right class. With JS, the toggle intercepts the submit and never reaches this.
  */
-export const setThemeServerFunction = createServerFn({ method: "POST" })
+export const setThemeServerFn = createServerFn({ method: "POST" })
   .validator(parseThemeForm)
   .handler(({ data: theme }) => {
     setCookie(THEME_COOKIE, theme, {
