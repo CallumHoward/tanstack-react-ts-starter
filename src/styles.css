@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 body {
+  @apply m-0;
+
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  @apply m-0;
 }
 
 code {
@@ -29,6 +29,14 @@ code {
   --z-pages: 2;
   --z-home: 1;
   --radius: 0.625rem;
+
+  /* Resolved color scheme for the document. The server-rendered <html> class
+     (light | dark | system) overrides this — see the color-scheme rules below.
+     light-dark() reads color-scheme to pick each token, so all three modes
+     resolve in pure CSS with no JS and no flash. This bare value is the
+     fallback for the case where no class is present (e.g. static prerender);
+     keep it in sync with DEFAULT_THEME in src/lib/theme.ts. */
+  color-scheme: light dark;
 
   /* Resolved scheme as a <color> sentinel (white = light, black = dark) for the
      style-query technique below. Registered via @property further down. */
@@ -70,14 +78,6 @@ code {
   );
   --sidebar-border: light-dark(oklch(92.9% 0.013 255.508deg), oklch(100% 0 0deg / 10%));
   --sidebar-ring: light-dark(oklch(70.4% 0.04 256.788deg), oklch(55.1% 0.027 264.364deg));
-
-  /* Resolved color scheme for the document. The server-rendered <html> class
-     (light | dark | system) overrides this — see the color-scheme rules below.
-     light-dark() reads color-scheme to pick each token, so all three modes
-     resolve in pure CSS with no JS and no flash. This bare value is the
-     fallback for the case where no class is present (e.g. static prerender);
-     keep it in sync with DEFAULT_THEME in src/lib/theme.ts. */
-  color-scheme: light dark;
 }
 
 /* Dark utilities (`dark:`) apply when the theme is forced dark OR when the
@@ -86,30 +86,30 @@ code {
    Color tokens flip automatically via light-dark(), so `dark:` is only needed
    for the occasional non-color utility. */
 @custom-variant dark {
+  /* stylelint-disable-next-line nesting-selector-no-missing-scoping-root -- `&` is scoped by Tailwind's @custom-variant, which stylelint can't parse */
+  &:where(.dark, .dark *) {
+    @slot;
+  }
+
   @media (prefers-color-scheme: dark) {
     /* stylelint-disable-next-line nesting-selector-no-missing-scoping-root -- `&` is scoped by Tailwind's @custom-variant, which stylelint can't parse */
     &:where(.system, .system *) {
       @slot;
     }
   }
-
-  /* stylelint-disable-next-line nesting-selector-no-missing-scoping-root -- `&` is scoped by Tailwind's @custom-variant, which stylelint can't parse */
-  &:where(.dark, .dark *) {
-    @slot;
-  }
 }
 
 /* The server stamps one of these classes on <html> from the `theme` cookie, so
    the correct color-scheme is present in the very first byte of HTML. */
-:root.light {
+html.light {
   color-scheme: light;
 }
 
-:root.dark {
+html.dark {
   color-scheme: dark;
 }
 
-:root.system {
+html.system {
   color-scheme: light dark;
 }
 
@@ -168,11 +168,10 @@ code {
    forced-dark AND system-resolved-dark in one rule. The class-based rules
    below are the fallback for browsers without style-query support; they key
    off the server-rendered class so forced light is never affected. */
-/* stylelint-disable-next-line plugin/use-baseline -- progressive enhancement; the class-based rules below are the fallback */
 @property --scheme {
+  syntax: "<color>";
   inherits: true;
   initial-value: white;
-  syntax: "<color>";
 }
 
 .surface-elevated {
