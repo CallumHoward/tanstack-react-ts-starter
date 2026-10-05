@@ -1,9 +1,8 @@
 import { render, screen } from "@testing-library/react";
+import { axe } from "@wcmj/config-react/vitest-setup";
 import { describe, expect, it } from "vitest";
 
 import { NotFound } from "#/components/not-found";
-
-import { axe } from "../../vitest-setup";
 
 describe("NotFound", () => {
   it("renders the 404 status heading", () => {

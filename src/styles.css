@@ -1,4 +1,3 @@
-/* stylelint-disable-next-line import-notation -- Tailwind v4 requires the bare-string import */
 @import "tailwindcss";
 
 body {

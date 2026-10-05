@@ -12,6 +12,7 @@ describe("theme", () => {
 
   it("resolveTheme falls back to the default for unknown or missing values", () => {
     expect(resolveTheme("banana")).toBe("system");
+    // oxlint-disable-next-line unicorn/no-useless-undefined -- the parameter is required, so a missing cookie is passed explicitly
     expect(resolveTheme(undefined)).toBe("system");
   });
 

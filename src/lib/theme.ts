@@ -93,6 +93,7 @@ export function applyTheme(theme: Theme): void {
   root.classList.add(theme);
   // Mark the cookie Secure on HTTPS so it is never sent over plain HTTP; omit it
   // on http (e.g. local dev) where a Secure cookie would be dropped.
-  const secure = window.location.protocol === "https:" ? "; secure" : "";
+  const secure = globalThis.location.protocol === "https:" ? "; secure" : "";
+  // oxlint-disable-next-line unicorn/no-document-cookie -- sync write; the Cookie Store API is async and unavailable in jsdom
   document.cookie = `${THEME_COOKIE}=${theme}; path=/; max-age=${ONE_YEAR_SECONDS}; samesite=lax${secure}`;
 }

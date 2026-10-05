@@ -6,6 +6,9 @@ allowBuilds:
 minimumReleaseAge: 10080
 # Fail resolution rather than fall back to a version inside the cooldown.
 minimumReleaseAgeStrict: true
+# Our own shared config, published here first; no cooldown needed.
+minimumReleaseAgeExclude:
+  - "@wcmj/*"
 # Block versions with weaker trust attestation than prior releases.
 trustPolicy: no-downgrade
 trustPolicyExclude:

@@ -1,4 +1,4 @@
-import type { FormEvent } from "react";
+import type { SubmitEvent } from "react";
 
 import { useTheme } from "#/components/theme/theme-context";
 import { isTheme, setThemeServerFn, THEMES, type Theme } from "#/lib/theme";
@@ -12,8 +12,8 @@ const LABELS: Record<Theme, string> = {
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    const submitter = (event.nativeEvent as SubmitEvent).submitter;
+  function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
+    const submitter = event.nativeEvent.submitter;
     const value = submitter instanceof HTMLButtonElement ? submitter.value : undefined;
     // Progressive enhancement: when JS runs, apply the theme client-side and skip
     // the round-trip. Without JS this handler never fires and the form posts to
