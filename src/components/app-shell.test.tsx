@@ -1,9 +1,8 @@
 import { render, screen } from "@testing-library/react";
+import { axe } from "@wcmj/config-react/vitest-setup";
 import { describe, expect, it } from "vitest";
 
 import { AppShell } from "#/components/app-shell";
-
-import { axe } from "../../vitest-setup";
 
 describe("AppShell", () => {
   it("renders the theme toggle and its children", () => {

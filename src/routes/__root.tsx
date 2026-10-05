@@ -4,14 +4,14 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import { AppShell } from "#/components/app-shell";
 import { NotFound } from "#/components/not-found";
-import { getThemeServerFn } from "#/lib/theme";
+import { getThemeServerFunction } from "#/lib/theme";
 
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
   // Read the theme from the cookie on the server so the shell can render the
   // correct <html> class in the initial HTML, avoiding any flash.
-  loader: () => getThemeServerFn(),
+  loader: () => getThemeServerFunction(),
 
   head: () => ({
     meta: [

@@ -1,12 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { axe } from "@wcmj/config-react/vitest-setup";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { ThemeProvider } from "#/components/theme/theme-provider";
 import { ThemeToggle } from "#/components/theme/theme-toggle";
 import type { Theme } from "#/lib/theme";
-
-import { axe } from "../../../vitest-setup";
 
 function renderToggle(initialTheme: Theme = "system") {
   return {
@@ -22,6 +21,7 @@ function renderToggle(initialTheme: Theme = "system") {
 describe("ThemeToggle", () => {
   beforeEach(() => {
     document.documentElement.className = "";
+    // oxlint-disable-next-line unicorn/no-document-cookie -- sync reset; the Cookie Store API is async and unavailable in jsdom
     document.cookie = "theme=; path=/; max-age=0";
   });
 

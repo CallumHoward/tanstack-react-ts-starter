@@ -28,7 +28,7 @@ describe("pnpm supply-chain config", () => {
   });
 
   it("enforces at least a 7-day release-age cooldown", () => {
-    expect(config.minimumReleaseAge).toBeGreaterThanOrEqual(10080);
+    expect(config.minimumReleaseAge).toBeGreaterThanOrEqual(10_080);
   });
 
   it("fails resolution instead of falling back to immature versions", () => {
