@@ -14,6 +14,7 @@ const config = parse(readFileSync(path.join(process.cwd(), "pnpm-workspace.yaml"
   blockExoticSubdeps?: boolean;
   minimumReleaseAge?: number;
   minimumReleaseAgeStrict?: boolean;
+  minimumReleaseAgeExclude?: string[];
   dangerouslyAllowAllBuilds?: boolean;
   autoDedupe?: boolean;
 };
@@ -33,6 +34,11 @@ describe("pnpm supply-chain config", () => {
 
   it("fails resolution instead of falling back to immature versions", () => {
     expect(config.minimumReleaseAgeStrict).toBe(true);
+  });
+
+  it("exempts only the shared config scope from the cooldown", () => {
+    // A typo stops the presets installing; a broader pattern bypasses the cooldown.
+    expect(config.minimumReleaseAgeExclude).toEqual(["@wcmj/*"]);
   });
 
   it("does not globally allow dependency build scripts", () => {
