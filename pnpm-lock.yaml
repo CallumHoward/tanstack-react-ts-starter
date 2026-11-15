@@ -188,8 +188,8 @@ importers:
         specifier: ^19.3.0
         version: 19.3.0(react@19.3.0)
       tailwindcss:
-        specifier: ^4.3.3
-        version: 4.3.3
+        specifier: ^4.3.5
+        version: 4.3.5
     devDependencies:
       '@playwright/test':
         specifier: ^1.63.0
@@ -232,7 +232,7 @@ importers:
         version: 0.3.0(@testing-library/dom@10.4.2)(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.2))(@testing-library/react@16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@typescript-eslint/parser@8.70.1(@typescript/typescript6@6.0.2)(eslint@10.4.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2))(@typescript/typescript6@6.0.2)(@vitest/coverage-v8@5.0.2)(eslint@10.4.1(jiti@2.7.0)(supports-color@10.2.2))(fallow@3.30.0)(jsdom@30.1.1)(lefthook@2.1.14)(oxfmt@0.70.0)(oxlint-tsgolint@7.0.2003)(oxlint@1.85.0(oxlint-tsgolint@7.0.2003))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(stylelint@17.15.0(@typescript/typescript6@6.0.2)(supports-color@10.2.2))(supports-color@10.2.2)(vite@8.3.1(@types/node@24.13.6)(jiti@2.7.0)(tsx@4.20.6)(yaml@2.9.1))(vitest@5.0.2)
       '@wcmj/config-tailwind':
         specifier: 0.3.0
-        version: 0.3.0(@typescript-eslint/parser@8.70.1(@typescript/typescript6@6.0.2)(eslint@10.4.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2))(@typescript/typescript6@6.0.2)(@vitest/coverage-v8@5.0.2)(eslint@10.4.1(jiti@2.7.0)(supports-color@10.2.2))(fallow@3.30.0)(lefthook@2.1.14)(oxfmt@0.70.0)(oxlint-tsgolint@7.0.2003)(oxlint@1.85.0(oxlint-tsgolint@7.0.2003))(stylelint@17.15.0(@typescript/typescript6@6.0.2)(supports-color@10.2.2))(supports-color@10.2.2)(tailwindcss@4.3.3)(vite@8.3.1(@types/node@24.13.6)(jiti@2.7.0)(tsx@4.20.6)(yaml@2.9.1))(vitest@5.0.2)
+        version: 0.3.0(@typescript-eslint/parser@8.70.1(@typescript/typescript6@6.0.2)(eslint@10.4.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2))(@typescript/typescript6@6.0.2)(@vitest/coverage-v8@5.0.2)(eslint@10.4.1(jiti@2.7.0)(supports-color@10.2.2))(fallow@3.30.0)(lefthook@2.1.14)(oxfmt@0.70.0)(oxlint-tsgolint@7.0.2003)(oxlint@1.85.0(oxlint-tsgolint@7.0.2003))(stylelint@17.15.0(@typescript/typescript6@6.0.2)(supports-color@10.2.2))(supports-color@10.2.2)(tailwindcss@4.3.5)(vite@8.3.1(@types/node@24.13.6)(jiti@2.7.0)(tsx@4.20.6)(yaml@2.9.1))(vitest@5.0.2)
       '@wcmj/config-tanstack':
         specifier: 0.3.0
         version: 0.3.0(@emnapi/core@1.11.0)(@emnapi/runtime@1.11.0)(@tanstack/react-router@1.170.39(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(@typescript-eslint/parser@8.70.1(@typescript/typescript6@6.0.2)(eslint@10.4.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2))(@typescript/typescript6@6.0.2)(@vitest/coverage-v8@5.0.2)(chokidar@5.0.0)(crossws@0.4.12(srvx@0.11.22))(eslint@10.4.1(jiti@2.7.0)(supports-color@10.2.2))(fallow@3.30.0)(jiti@2.7.0)(lefthook@2.1.14)(lru-cache@11.5.3)(oxfmt@0.70.0)(oxlint-tsgolint@7.0.2003)(oxlint@1.85.0(oxlint-tsgolint@7.0.2003))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(rolldown@1.2.9)(stylelint@17.15.0(@typescript/typescript6@6.0.2)(supports-color@10.2.2))(supports-color@10.2.2)(vite@8.3.1(@types/node@24.13.6)(jiti@2.7.0)(tsx@4.20.6)(yaml@2.9.1))(vitest@5.0.2)
@@ -3562,6 +3562,9 @@ packages:
   tailwindcss@4.3.3:
     resolution: {integrity: sha512-gOhV3P7ufE62QDGg1zVaTgCR+EtPv92k2nIhVcVKcLmxT1sUBsQGhnZj175j+MqRt4zLF7ic+sCYjfhxMxj7YQ==}
 
+  tailwindcss@4.3.5:
+    resolution: {integrity: sha512-FcQk9BuffmEHJP2G0XmB2SplU1aLTI7j07Kunk+U74Ny+XiWOtzXz9aujFZ/avntw1e2cOv/3PkgzflQ7gX2vQ==}
+
   tapable@2.3.3:
     resolution: {integrity: sha512-uxc/zpqFg6x7C8vOE7lh6Lbda8eEL9zmVm/PLeTPBRhh1xCgdWaQ+J1CUieGpIfm2HdtsUpRv+HshiasBMcc6A==}
     engines: {node: '>=6'}
@@ -5486,13 +5489,13 @@ snapshots:
       - stylelint
       - supports-color
 
-  '@wcmj/config-tailwind@0.3.0(@typescript-eslint/parser@8.70.1(@typescript/typescript6@6.0.2)(eslint@10.4.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2))(@typescript/typescript6@6.0.2)(@vitest/coverage-v8@5.0.2)(eslint@10.4.1(jiti@2.7.0)(supports-color@10.2.2))(fallow@3.30.0)(lefthook@2.1.14)(oxfmt@0.70.0)(oxlint-tsgolint@7.0.2003)(oxlint@1.85.0(oxlint-tsgolint@7.0.2003))(stylelint@17.15.0(@typescript/typescript6@6.0.2)(supports-color@10.2.2))(supports-color@10.2.2)(tailwindcss@4.3.3)(vite@8.3.1(@types/node@24.13.6)(jiti@2.7.0)(tsx@4.20.6)(yaml@2.9.1))(vitest@5.0.2)':
+  '@wcmj/config-tailwind@0.3.0(@typescript-eslint/parser@8.70.1(@typescript/typescript6@6.0.2)(eslint@10.4.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2))(@typescript/typescript6@6.0.2)(@vitest/coverage-v8@5.0.2)(eslint@10.4.1(jiti@2.7.0)(supports-color@10.2.2))(fallow@3.30.0)(lefthook@2.1.14)(oxfmt@0.70.0)(oxlint-tsgolint@7.0.2003)(oxlint@1.85.0(oxlint-tsgolint@7.0.2003))(stylelint@17.15.0(@typescript/typescript6@6.0.2)(supports-color@10.2.2))(supports-color@10.2.2)(tailwindcss@4.3.5)(vite@8.3.1(@types/node@24.13.6)(jiti@2.7.0)(tsx@4.20.6)(yaml@2.9.1))(vitest@5.0.2)':
     dependencies:
       '@tailwindcss/vite': 4.3.3(vite@8.3.1(@types/node@24.13.6)(jiti@2.7.0)(tsx@4.20.6)(yaml@2.9.1))
       '@wcmj/config-base': 0.3.0(@typescript-eslint/parser@8.70.1(@typescript/typescript6@6.0.2)(eslint@10.4.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2))(@typescript/typescript6@6.0.2)(@vitest/coverage-v8@5.0.2)(eslint@10.4.1(jiti@2.7.0)(supports-color@10.2.2))(fallow@3.30.0)(lefthook@2.1.14)(oxfmt@0.70.0)(oxlint-tsgolint@7.0.2003)(oxlint@1.85.0(oxlint-tsgolint@7.0.2003))(stylelint@17.15.0(@typescript/typescript6@6.0.2)(supports-color@10.2.2))(supports-color@10.2.2)(vite@8.3.1(@types/node@24.13.6)(jiti@2.7.0)(tsx@4.20.6)(yaml@2.9.1))(vitest@5.0.2)
       oxfmt: 0.70.0
       stylelint: 17.15.0(@typescript/typescript6@6.0.2)(supports-color@10.2.2)
-      tailwindcss: 4.3.3
+      tailwindcss: 4.3.5
       vite: 8.3.1(@types/node@24.13.6)(jiti@2.7.0)(tsx@4.20.6)(yaml@2.9.1)
     transitivePeerDependencies:
       - '@typescript-eslint/parser'
@@ -6993,6 +6996,8 @@ snapshots:
       strip-ansi: 6.0.1
 
   tailwindcss@4.3.3: {}
+
+  tailwindcss@4.3.5: {}
 
   tapable@2.3.3: {}
 
